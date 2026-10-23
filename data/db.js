@@ -1,8 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 
-const DB_FILE = path.join(__dirname, 'database.json');
-
 // Default Seed Data
 const initialData = {
   internships: [
@@ -289,35 +287,98 @@ const initialData = {
   subscribers: ['student1@university.edu', 'campus.tech@college.edu']
 };
 
+// Cloud-resilient storage path resolver
+function resolveDbPath() {
+  if (process.env.DB_FILE_PATH) {
+    return process.env.DB_FILE_PATH;
+  }
+  const defaultPath = path.join(__dirname, 'database.json');
+  // Check if current directory is writable (Vercel / read-only serverless check)
+  if (process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME) {
+    const tmpPath = path.join('/tmp', 'unimate_database.json');
+    if (!fs.existsSync(tmpPath) && fs.existsSync(defaultPath)) {
+      try {
+        fs.copyFileSync(defaultPath, tmpPath);
+      } catch (e) {
+        // Ignored
+      }
+    }
+    return tmpPath;
+  }
+  return defaultPath;
+}
+
+const DB_FILE = resolveDbPath();
+
 class Database {
   constructor() {
+    this.filePath = DB_FILE;
+    this.inMemoryOnly = false;
     this.data = this.load();
   }
 
   load() {
     try {
-      if (fs.existsSync(DB_FILE)) {
-        const raw = fs.readFileSync(DB_FILE, 'utf-8');
-        return JSON.parse(raw);
+      if (fs.existsSync(this.filePath)) {
+        const raw = fs.readFileSync(this.filePath, 'utf-8');
+        const parsed = JSON.parse(raw);
+        // Ensure all required collections exist
+        for (const key of Object.keys(initialData)) {
+          if (!parsed[key]) parsed[key] = JSON.parse(JSON.stringify(initialData[key]));
+        }
+        return parsed;
       }
     } catch (err) {
-      console.error('Error reading database file, initializing default:', err);
+      console.warn(`[UNIMATE DB] Could not read from ${this.filePath}, falling back to default seed:`, err.message);
     }
-    this.save(initialData);
-    return JSON.parse(JSON.stringify(initialData));
+
+    // Try fallback to /tmp if primary path failed
+    if (this.filePath !== path.join('/tmp', 'unimate_database.json')) {
+      try {
+        const tmpPath = path.join('/tmp', 'unimate_database.json');
+        if (fs.existsSync(tmpPath)) {
+          const raw = fs.readFileSync(tmpPath, 'utf-8');
+          this.filePath = tmpPath;
+          return JSON.parse(raw);
+        }
+      } catch (e) {
+        // Ignored
+      }
+    }
+
+    const defaultClone = JSON.parse(JSON.stringify(initialData));
+    this.save(defaultClone);
+    return defaultClone;
   }
 
   save(dataToSave) {
+    if (this.inMemoryOnly) return;
     try {
       const data = dataToSave || this.data;
-      fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2), 'utf-8');
+      fs.writeFileSync(this.filePath, JSON.stringify(data, null, 2), 'utf-8');
     } catch (err) {
-      console.error('Error saving database:', err);
+      console.warn(`[UNIMATE DB] Write to ${this.filePath} failed. Trying /tmp fallback...`, err.message);
+      try {
+        const tmpPath = path.join('/tmp', 'unimate_database.json');
+        this.filePath = tmpPath;
+        fs.writeFileSync(this.filePath, JSON.stringify(dataToSave || this.data, null, 2), 'utf-8');
+      } catch (tmpErr) {
+        console.warn(`[UNIMATE DB] Disk write unavailable, operating in in-memory mode:`, tmpErr.message);
+        this.inMemoryOnly = true;
+      }
     }
   }
 
   get(collection) {
     return this.data[collection] || [];
+  }
+
+  getById(collection, id) {
+    return (this.data[collection] || []).find(item => item.id === id) || null;
+  }
+
+  count(collection) {
+    return (this.data[collection] || []).length;
   }
 
   insert(collection, item) {
@@ -350,8 +411,19 @@ class Database {
     }
     return false;
   }
+
+  exportAll() {
+    return JSON.parse(JSON.stringify(this.data));
+  }
+
+  resetDefault() {
+    this.data = JSON.parse(JSON.stringify(initialData));
+    this.save();
+    return this.data;
+  }
 }
 
 const db = new Database();
 
 module.exports = db;
+

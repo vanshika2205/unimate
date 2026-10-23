@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found | UNIMATE</title>
+  <meta name="description" content="The page you are looking for does not exist or has been moved.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/images/unimate_emblem.png">
+  <style>
+    .error-hero {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 20px 80px;
+      background: radial-gradient(circle at 50% 30%, #10213d 0%, #071224 100%);
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+    }
+    .error-code {
+      font-size: clamp(6rem, 15vw, 11rem);
+      font-weight: 800;
+      line-height: 1;
+      background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 50%, #93c5fd 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+      letter-spacing: -4px;
+    }
+    .error-card {
+      max-width: 640px;
+      background: rgba(15, 28, 50, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      padding: 48px 36px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    }
+    .quick-links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .quick-link-chip {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 10px 14px;
+      border-radius: 10px;
+      color: #93c5fd;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    .quick-link-chip:hover {
+      background: rgba(59, 130, 246, 0.25);
+      border-color: #60a5fa;
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Navigation -->
+  <header class="site-header" id="siteHeader">
+    <div class="container">
+      <nav class="navbar" aria-label="Main Navigation">
+        <a href="index.html" class="brand" aria-label="UNIMATE Home">
+          <div class="brand-badge">
+            <img src="assets/images/unimate_emblem.png" alt="UNIMATE Emblem" class="brand-icon">
+          </div>
+          <div class="brand-text">
+            <span class="brand-title">UNIMATE</span>
+            <span class="brand-subtitle">EMPOWERING STUDENT JOURNEYS</span>
+          </div>
+        </a>
+
+        <ul class="nav-menu" id="navMenu">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="learning-paths.html" class="nav-link">Learning Paths</a></li>
+          <li class="nav-item"><a href="academic-support.html" class="nav-link">Academic Support</a></li>
+          <li class="nav-item"><a href="projects.html" class="nav-link">Projects</a></li>
+          <li class="nav-item"><a href="internships.html" class="nav-link">Opportunities</a></li>
+          <li class="nav-item"><a href="community.html" class="nav-link">Community</a></li>
+          <li class="nav-item"><a href="portal.html" class="nav-link">Portal</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="index.html" class="btn btn-primary">
+            Home
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg>
+          </a>
+        </div>
+
+        <button class="mobile-toggle" aria-label="Toggle navigation">&#9776;</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Error Screen -->
+  <section class="error-hero">
+    <div class="container" style="display:flex; justify-content:center;">
+      <div class="error-card">
+        <div class="error-code">404</div>
+        <h1 style="font-size: 1.8rem; font-weight:800; margin-bottom: 12px;">Resource Out of Orbit</h1>
+        <p style="color:#94a3b8; font-size:1.02rem; line-height:1.6; margin-bottom: 24px;">
+          The page or route you were looking for doesn't exist, was moved, or has changed. Head back to campus and continue your journey!
+        </p>
+
+        <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:28px;">
+          <a href="index.html" class="btn btn-primary">
+            &larr; Back to Home
+          </a>
+          <a href="portal.html" class="btn btn-secondary-dark">
+            Open Operations Portal
+          </a>
+        </div>
+
+        <div style="border-top:1px solid rgba(255,255,255,0.1); padding-top:20px;">
+          <span style="font-size:0.8rem; color:#64748b; text-transform:uppercase; font-weight:700; letter-spacing:1px;">Or jump directly to:</span>
+          <div class="quick-links-grid">
+            <a href="learning-paths.html" class="quick-link-chip">Learning Paths</a>
+            <a href="academic-support.html" class="quick-link-chip">Study Notes</a>
+            <a href="projects.html" class="quick-link-chip">Projects</a>
+            <a href="internships.html" class="quick-link-chip">Internships</a>
+            <a href="community.html" class="quick-link-chip">Community</a>
+            <a href="contact.html" class="quick-link-chip">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 UNIMATE. Empowering student journeys.</div>
+        <div class="footer-legal-links">
+          <a href="contact.html" class="footer-legal-link">Privacy</a>
+          <span>•</span>
+          <a href="contact.html" class="footer-legal-link">Terms</a>
+          <span>•</span>
+          <a href="contact.html" class="footer-legal-link">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

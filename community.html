@@ -224,6 +224,21 @@
         </button>
       </div>
 
+      <!-- Channel Filters & Search -->
+      <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:16px; margin-bottom:28px;">
+        <div class="filter-tabs" id="communityChannelTabs" style="margin-bottom:0;">
+          <button class="filter-btn active" data-channel="all">All Topics</button>
+          <button class="filter-btn" data-channel="general">#general</button>
+          <button class="filter-btn" data-channel="web-dev">#web-dev</button>
+          <button class="filter-btn" data-channel="academic-doubts">#academic-doubts</button>
+          <button class="filter-btn" data-channel="hackathons">#hackathons</button>
+          <button class="filter-btn" data-channel="design">#design</button>
+        </div>
+        <div style="flex:1; max-width:320px; min-width:200px;">
+          <input type="text" id="communitySearchInput" class="form-control" placeholder="Search discussions or #tags..." style="background:#f8fafc; font-size:0.88rem;">
+        </div>
+      </div>
+
       <!-- Feed Container dynamically populated by main.js -->
       <div id="liveCommunityFeed">
         <!-- Rendered via /api/community/posts -->
@@ -305,7 +320,6 @@
             Built for students, for the journey ahead. Academic support, practical skills and a community to grow with.
           </p>
           <div class="footer-pillars">LEARN • BUILD • GROW • BELONG</div>
-        </div>
         </div>
 
         <div class="footer-nav-col">

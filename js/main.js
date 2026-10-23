@@ -7,11 +7,22 @@ const API_BASE = (window.location.origin && window.location.origin.startsWith('h
   ? '/api' 
   : 'http://localhost:3000/api';
 
+function resolveApiUrl(path) {
+  if (!path) return `${API_BASE}`;
+  if (path.startsWith('http://') || path.startsWith('https://')) return path;
+  if (path.startsWith('/api/')) return `${API_BASE}${path.slice(4)}`;
+  if (path.startsWith('/api')) return `${API_BASE}${path.slice(4)}`;
+  if (path.startsWith('/')) return `${API_BASE}${path}`;
+  return `${API_BASE}/${path}`;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
+  highlightActiveNavLink();
   initAccordions();
   initFilterTabs();
   initModals();
+  initRoleQuickSelect();
   initFullStackForms();
   initPageSpecificModules();
 });
@@ -47,6 +58,24 @@ function initNavbar() {
       }
     });
   }
+}
+
+function highlightActiveNavLink() {
+  const path = window.location.pathname.toLowerCase();
+  const navLinks = document.querySelectorAll('.nav-link');
+  
+  navLinks.forEach((link) => {
+    const href = link.getAttribute('href')?.toLowerCase();
+    if (!href) return;
+    
+    if (path.endsWith('/') || path.endsWith('/index.html') || path === '') {
+      if (href === 'index.html' || href === '/') {
+        link.classList.add('active');
+      }
+    } else if (href !== 'index.html' && href !== '/' && (path.includes(href.replace('.html', '')) || path.includes(href))) {
+      link.classList.add('active');
+    }
+  });
 }
 
 /* --------------------------------------------------------------------------
@@ -130,11 +159,31 @@ function initModals() {
     });
   });
 
-  // Close when clicking background
   document.querySelectorAll('.modal-overlay').forEach((overlay) => {
     overlay.addEventListener('click', (e) => {
       if (e.target === overlay) {
         overlay.classList.remove('active');
+      }
+    });
+  });
+}
+
+/* --------------------------------------------------------------------------
+   Role Quick Select (Internships Page)
+   -------------------------------------------------------------------------- */
+function initRoleQuickSelect() {
+  document.querySelectorAll('.role-enquire-btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      const role = btn.getAttribute('data-role');
+      const select = document.querySelector('select[name="roleTitle"]');
+      if (select && role) {
+        for (let i = 0; i < select.options.length; i++) {
+          if (select.options[i].text.toLowerCase().includes(role.toLowerCase()) || 
+              select.options[i].value.toLowerCase().includes(role.toLowerCase())) {
+            select.selectedIndex = i;
+            break;
+          }
+        }
       }
     });
   });
@@ -167,7 +216,7 @@ function showToast(message, type = 'success') {
     background: ${bg};
     color: #ffffff;
     padding: 14px 20px;
-    border-radius: 10px;
+    border-radius: 12px;
     font-size: 0.92rem;
     font-weight: 500;
     box-shadow: 0 10px 30px rgba(0,0,0,0.25);
@@ -178,11 +227,11 @@ function showToast(message, type = 'success') {
     transform: translateY(15px);
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     pointer-events: auto;
-    max-width: 380px;
+    max-width: 400px;
   `;
   
   const icon = type === 'error' ? '⚠️' : type === 'info' ? 'ℹ️' : '✓';
-  toast.innerHTML = `<span>${icon}</span><span>${message}</span>`;
+  toast.innerHTML = `<span style="font-size:1.1rem;">${icon}</span><span>${message}</span>`;
 
   container.appendChild(toast);
 
@@ -224,14 +273,12 @@ function initFullStackForms() {
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
         
-        // Determine endpoint based on page or data attributes
         let endpoint = form.getAttribute('data-endpoint');
         const page = window.location.pathname.toLowerCase();
 
         if (!endpoint) {
           if (page.includes('internship')) {
             endpoint = `${API_BASE}/applications`;
-            // map form inputs
             data.fullName = data.fullName || form.querySelector('input[type="text"]')?.value;
             data.email = data.email || form.querySelector('input[type="email"]')?.value;
             data.roleTitle = data.roleTitle || form.querySelector('select')?.selectedOptions[0]?.text;
@@ -241,8 +288,8 @@ function initFullStackForms() {
           } else if (page.includes('academic')) {
             endpoint = `${API_BASE}/notes`;
             data.title = data.title || form.querySelector('input[type="text"]')?.value;
-            data.subject = data.subject || 'Engineering Subject';
-            data.branch = data.branch || 'Common Engineering';
+            data.subject = data.subject || form.querySelectorAll('input[type="text"]')[1]?.value || 'Engineering Subject';
+            data.branch = data.branch || form.querySelector('select')?.value || 'Common Engineering';
           } else if (page.includes('community')) {
             endpoint = `${API_BASE}/community/posts`;
           } else if (page.includes('mentorship') || page.includes('training')) {
@@ -260,6 +307,8 @@ function initFullStackForms() {
             data.email = data.email || form.querySelector('input[type="email"]')?.value;
             data.message = data.message || form.querySelector('textarea')?.value;
           }
+        } else {
+          endpoint = resolveApiUrl(endpoint);
         }
 
         const res = await fetch(endpoint, {
@@ -271,9 +320,17 @@ function initFullStackForms() {
         const result = await res.json();
 
         if (res.ok && result.success) {
-          let msg = result.message || 'Submitted successfully!';
+          let msg = form.getAttribute('data-success-message') || result.message || 'Submitted successfully!';
           if (result.trackingId) {
             msg = `🎉 Application received! Tracking ID: <strong>${result.trackingId}</strong>`;
+            
+            // Auto fill tracker widget if present
+            const trackInput = document.getElementById('trackAppInput');
+            if (trackInput) {
+              trackInput.value = result.trackingId;
+              const trackBtn = document.getElementById('trackAppBtn');
+              if (trackBtn) trackBtn.click();
+            }
           }
           showToast(msg, 'success');
           form.reset();
@@ -284,7 +341,7 @@ function initFullStackForms() {
             parentModal.classList.remove('active');
           }
 
-          // Trigger refresh on relevant catalogs
+          // Trigger refresh callbacks
           if (window.refreshAcademicNotes) window.refreshAcademicNotes();
           if (window.refreshCommunityPosts) window.refreshCommunityPosts();
         } else {
@@ -317,6 +374,28 @@ function initPageSpecificModules() {
     initCommunityFeed();
   } else if (path.includes('project')) {
     initProjectCards();
+  } else if (path === '/' || path.endsWith('/index.html') || path === '') {
+    initHomeLiveStats();
+  }
+}
+
+/* --- Home Page Live Stats Hydration --- */
+async function initHomeLiveStats() {
+  try {
+    const res = await fetch(`${API_BASE}/health`);
+    const data = await res.json();
+    if (data && data.metrics) {
+      // Hydrate pillar subtitles if desired
+      const pillarItems = document.querySelectorAll('.pillar-item');
+      if (pillarItems.length >= 4) {
+        pillarItems[0].querySelector('.pillar-sub').innerText = `${data.metrics.totalNotes}+ Study Notes`;
+        pillarItems[1].querySelector('.pillar-sub').innerText = `${data.metrics.activeProjects} Active Projects`;
+        pillarItems[2].querySelector('.pillar-sub').innerText = `${data.metrics.communityDiscussions}+ Discussions`;
+        pillarItems[3].querySelector('.pillar-sub').innerText = `${data.metrics.totalApplications}+ Active Scholars`;
+      }
+    }
+  } catch (err) {
+    // Non-critical background feature
   }
 }
 
@@ -376,6 +455,7 @@ function initInternshipTrackingWidget() {
           under_review: { bg: '#e0f2fe', text: '#0369a1', label: 'Under Review' },
           accepted: { bg: '#dcfce7', text: '#15803d', label: 'Accepted / Interview Ready' },
           pending: { bg: '#fef3c7', text: '#b45309', label: 'Received' },
+          interview_scheduled: { bg: '#f3e8ff', text: '#7e22ce', label: 'Interview Scheduled' },
           rejected: { bg: '#fee2e2', text: '#b91c1c', label: 'Not Selected' }
         };
         const st = statusColors[app.status] || { bg: '#f1f5f9', text: '#475569', label: app.status };
@@ -438,7 +518,7 @@ function initAcademicNotesCatalog() {
     `;
 
     try {
-      const url = new URL(`${API_BASE}/notes`, window.location.origin);
+      const url = new URL(resolveApiUrl('/notes'), window.location.origin);
       if (q) url.searchParams.set('search', q);
       if (branch && branch !== 'all') url.searchParams.set('branch', branch);
 
@@ -514,17 +594,37 @@ function initAcademicNotesCatalog() {
   loadNotes();
 }
 
-/* --- Live Community Feed on community.html --- */
+/* --- Live Community Feed with Channel Tabs & Search --- */
 function initCommunityFeed() {
   const container = document.getElementById('liveCommunityFeed');
   if (!container) return;
 
+  let currentChannel = 'all';
+  let currentSearch = '';
+
   const loadFeed = async () => {
     try {
-      const res = await fetch(`${API_BASE}/community/posts`);
+      const url = new URL(resolveApiUrl('/community/posts'), window.location.origin);
+      if (currentChannel !== 'all') url.searchParams.set('channel', currentChannel);
+      if (currentSearch) url.searchParams.set('search', currentSearch);
+
+      const res = await fetch(url);
       const data = await res.json();
 
       if (res.ok && data.posts) {
+        if (data.posts.length === 0) {
+          container.innerHTML = `
+            <div style="text-align:center; padding:50px 20px; background:#f8fafc; border-radius:16px; border:1px solid #e2e8f0;">
+              <h4 style="margin-bottom:8px;">No discussions in this channel yet</h4>
+              <p style="color:#64748b; font-size:0.9rem; margin-bottom:16px;">Be the first student to ask a question or start a topic!</p>
+              <button class="btn btn-primary btn-sm" onclick="document.getElementById('newDiscussionModal')?.classList.add('active')">
+                + Start Discussion
+              </button>
+            </div>
+          `;
+          return;
+        }
+
         container.innerHTML = data.posts.map((post) => `
           <div class="community-thread-card" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:16px; padding:24px; margin-bottom:20px; box-shadow:0 4px 15px rgba(0,0,0,0.03);">
             <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
@@ -534,7 +634,7 @@ function initCommunityFeed() {
                 </div>
                 <div>
                   <h4 style="margin:0; font-size:1rem; font-weight:700; color:#0f172a;">${post.authorName}</h4>
-                  <span style="font-size:0.8rem; color:#64748b;">${post.authorRole} • ${new Date(post.createdAt).toLocaleDateString()}</span>
+                  <span style="font-size:0.8rem; color:#64748b;">${post.authorRole || 'UNIMATE Member'} • ${new Date(post.createdAt).toLocaleDateString()}</span>
                 </div>
               </div>
               <span class="badge badge-blue">#${post.channel || 'general'}</span>
@@ -620,16 +720,46 @@ function initCommunityFeed() {
     }
   };
 
+  // Wire Channel Buttons
+  document.querySelectorAll('#communityChannelTabs .filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#communityChannelTabs .filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentChannel = btn.getAttribute('data-channel');
+      loadFeed();
+    });
+  });
+
+  // Wire Search Input
+  const searchInput = document.getElementById('communitySearchInput');
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      currentSearch = e.target.value.trim();
+      loadFeed();
+    });
+  }
+
   window.refreshCommunityPosts = loadFeed;
   loadFeed();
 }
 
 /* --- Project Cards Wire-up on projects.html --- */
 function initProjectCards() {
-  document.querySelectorAll('.apply-project-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const modal = document.getElementById('teammateModal');
-      if (modal) modal.classList.add('active');
+  document.querySelectorAll('.brief-card a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const card = link.closest('.brief-card');
+      const title = card ? card.querySelector('.path-card-title')?.innerText : null;
+      if (title) {
+        const select = document.querySelector('select[name="roleInterested"]');
+        if (select) {
+          for (let i = 0; i < select.options.length; i++) {
+            if (select.options[i].text.toLowerCase().includes(title.toLowerCase())) {
+              select.selectedIndex = i;
+              break;
+            }
+          }
+        }
+      }
     });
   });
 }

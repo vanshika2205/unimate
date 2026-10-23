@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student & Admin Portal | UNIMATE</title>
-  <meta name="description" content="Manage internship applications, academic notes, community discussions and live API services.">
+  <title>Student & Operations Portal | UNIMATE</title>
+  <meta name="description" content="Live management dashboard for UNIMATE internship applications, academic notes, project team-ups, mentorship sessions and platform metrics.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -12,46 +12,96 @@
   <link rel="icon" type="image/png" href="assets/images/unimate_emblem.png">
   <style>
     .portal-hero {
-      background: var(--bg-dark);
-      padding: 120px 0 60px;
+      background: radial-gradient(circle at 80% 20%, #162a4a 0%, #071224 100%);
+      padding: 120px 0 50px;
       color: #fff;
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
     .metric-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      margin-top: 36px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 32px;
     }
     .metric-card {
       background: rgba(15, 28, 50, 0.7);
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 16px;
-      padding: 24px;
+      padding: 20px;
       backdrop-filter: blur(10px);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .metric-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(96, 165, 250, 0.4);
     }
     .metric-num {
-      font-size: 2.2rem;
+      font-size: 2.1rem;
       font-weight: 800;
       color: #60a5fa;
       margin-bottom: 4px;
+      line-height: 1.1;
     }
     .metric-label {
-      font-size: 0.88rem;
+      font-size: 0.84rem;
       color: #94a3b8;
-      font-weight: 500;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .portal-nav-tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 16px 0;
+      margin-bottom: 24px;
+      border-bottom: 1px solid #e2e8f0;
+      scrollbar-width: thin;
+    }
+    .portal-tab-btn {
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: 1px solid transparent;
+      background: #f1f5f9;
+      color: #475569;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+    .portal-tab-btn:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+    .portal-tab-btn.active {
+      background: #1d68f5;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(29, 104, 245, 0.25);
+    }
+    .tab-badge {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      margin-left: 6px;
+      background: rgba(0,0,0,0.1);
+    }
+    .portal-tab-btn.active .tab-badge {
+      background: rgba(255,255,255,0.25);
     }
     .portal-section {
-      padding: 60px 0;
+      padding: 40px 0 80px;
       background: #f8fafc;
+      min-height: 70vh;
     }
     .portal-card {
       background: #fff;
       border: 1px solid #e2e8f0;
       border-radius: 16px;
-      padding: 28px;
+      padding: 24px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-      margin-bottom: 32px;
+      margin-bottom: 28px;
     }
     .table-responsive {
       overflow-x: auto;
@@ -59,28 +109,30 @@
     .data-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
     }
     .data-table th {
-      background: #f1f5f9;
-      padding: 12px 16px;
+      background: #f8fafc;
+      padding: 12px 14px;
       text-align: left;
-      font-weight: 600;
+      font-weight: 700;
       color: #334155;
       border-bottom: 2px solid #e2e8f0;
+      white-space: nowrap;
     }
     .data-table td {
-      padding: 14px 16px;
+      padding: 12px 14px;
       border-bottom: 1px solid #f1f5f9;
       color: #1e293b;
+      vertical-align: middle;
     }
     .data-table tr:hover {
       background: #f8fafc;
     }
     .status-select {
-      padding: 6px 12px;
+      padding: 5px 10px;
       border-radius: 8px;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 600;
       border: 1px solid #cbd5e1;
       background: #fff;
@@ -90,9 +142,24 @@
       background: #0284c7;
       color: #fff;
       font-family: monospace;
-      padding: 4px 8px;
-      border-radius: 6px;
-      font-size: 0.78rem;
+      padding: 3px 7px;
+      border-radius: 5px;
+      font-size: 0.74rem;
+      font-weight: 700;
+    }
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .filter-bar input, .filter-bar select {
+      padding: 8px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      background: #fff;
     }
   </style>
 </head>
@@ -124,7 +191,7 @@
 
         <div class="nav-actions">
           <a href="contact.html" class="btn btn-primary">
-            Get Started
+            Contact
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg>
           </a>
         </div>
@@ -137,27 +204,28 @@
   <!-- Portal Hero & Live Stats -->
   <section class="portal-hero">
     <div class="container">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;">
         <div>
-          <span class="overline overline-dark">BACKEND & STUDENT CONTROLS</span>
-          <h1 style="font-size: 2.4rem; font-weight:800; margin: 8px 0;">UNIMATE Live Operations Portal</h1>
-          <p style="color:#94a3b8; font-size:1.05rem;">
-            Real-time backend data sync across internship applications, study notes library, and community threads.
+          <span class="overline overline-dark">UNIMATE OPERATIONS & DATA HUB</span>
+          <h1 style="font-size: 2.3rem; font-weight:800; margin: 8px 0;">Live Operations Dashboard</h1>
+          <p style="color:#94a3b8; font-size:1.02rem; max-width:680px; margin:0;">
+            Real-time control panel managing student applications, academic notes, collaborative teams, 1-on-1 mentorship, and cloud API endpoints.
           </p>
         </div>
-        <div>
+        <div style="display:flex; flex-direction:column; gap:8px; align-items:flex-end;">
           <span id="serverBadge" style="display:inline-flex; align-items:center; gap:8px; background:rgba(34,197,94,0.15); border:1px solid rgba(34,197,94,0.3); color:#4ade80; padding:8px 18px; border-radius:30px; font-weight:700; font-size:0.85rem;">
             <span style="width:10px; height:10px; border-radius:50%; background:#22c55e; display:inline-block; animation: pulse 1.5s infinite;"></span>
-            SERVER ONLINE (Port 3000)
+            SYSTEM ONLINE
           </span>
+          <span id="uptimeText" style="color:#94a3b8; font-size:0.8rem;">Uptime: loading...</span>
         </div>
       </div>
 
-      <!-- Metrics -->
+      <!-- Metrics Grid -->
       <div class="metric-grid" id="portalMetrics">
         <div class="metric-card">
           <div class="metric-num" id="mApps">--</div>
-          <div class="metric-label">Total Applications</div>
+          <div class="metric-label">Applications</div>
         </div>
         <div class="metric-card">
           <div class="metric-num" id="mPending" style="color:#f59e0b;">--</div>
@@ -165,128 +233,374 @@
         </div>
         <div class="metric-card">
           <div class="metric-num" id="mNotes" style="color:#10b981;">--</div>
-          <div class="metric-label">Verified Study Notes</div>
+          <div class="metric-label">Library Notes</div>
         </div>
         <div class="metric-card">
           <div class="metric-num" id="mDownloads" style="color:#8b5cf6;">--</div>
-          <div class="metric-label">Total Note Downloads</div>
+          <div class="metric-label">Note Downloads</div>
         </div>
         <div class="metric-card">
           <div class="metric-num" id="mPosts" style="color:#ec4899;">--</div>
-          <div class="metric-label">Community Threads</div>
+          <div class="metric-label">Discussions</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num" id="mProjects" style="color:#06b6d4;">--</div>
+          <div class="metric-label">Active Projects</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num" id="mTeamApps" style="color:#3b82f6;">--</div>
+          <div class="metric-label">Team Requests</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num" id="mMentorship" style="color:#eab308;">--</div>
+          <div class="metric-label">Mentorships</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Main Management Sections -->
+  <!-- Main Management Body -->
   <section class="portal-section">
     <div class="container">
 
-      <!-- Section: Internship Applications -->
-      <div class="portal-card">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
-          <div>
-            <h3 style="font-size:1.4rem; font-weight:700; margin:0 0 4px;">Student Internship Applications</h3>
-            <p style="color:#64748b; font-size:0.88rem; margin:0;">Live records submitted through <code>/api/applications</code></p>
-          </div>
-          <button class="btn btn-outline btn-sm" onclick="loadApplications()">↻ Refresh Applications</button>
-        </div>
+      <!-- Navigation Tabs -->
+      <div class="portal-nav-tabs">
+        <button class="portal-tab-btn active" data-tab="tab-apps">
+          Internship Applications <span class="tab-badge" id="badgeApps">0</span>
+        </button>
+        <button class="portal-tab-btn" data-tab="tab-notes">
+          Academic Notes <span class="tab-badge" id="badgeNotes">0</span>
+        </button>
+        <button class="portal-tab-btn" data-tab="tab-teams">
+          Project Team-Ups <span class="tab-badge" id="badgeTeams">0</span>
+        </button>
+        <button class="portal-tab-btn" data-tab="tab-mentorship">
+          Mentorship Bookings <span class="tab-badge" id="badgeMent">0</span>
+        </button>
+        <button class="portal-tab-btn" data-tab="tab-inquiries">
+          Contact Enquiries <span class="tab-badge" id="badgeInq">0</span>
+        </button>
+        <button class="portal-tab-btn" data-tab="tab-newsletter">
+          Subscribers <span class="tab-badge" id="badgeSubs">0</span>
+        </button>
+        <button class="portal-tab-btn" data-tab="tab-api">
+          REST API & Health
+        </button>
+      </div>
 
-        <div class="table-responsive">
-          <table class="data-table" id="applicationsTable">
-            <thead>
-              <tr>
-                <th>Tracking ID</th>
-                <th>Applicant Name</th>
-                <th>Role Applied</th>
-                <th>College / Branch</th>
-                <th>Submitted</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody id="applicationsTbody">
-              <tr><td colspan="7" style="text-align:center; padding:30px; color:#64748b;">Loading applications...</td></tr>
-            </tbody>
-          </table>
+      <!-- Tab 1: Internship Applications -->
+      <div class="tab-pane active" id="tab-apps">
+        <div class="portal-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:12px;">
+            <div>
+              <h3 style="font-size:1.35rem; font-weight:700; margin:0 0 4px;">Student Internship Applications</h3>
+              <p style="color:#64748b; font-size:0.88rem; margin:0;">Live applicant submissions through <code>/api/applications</code></p>
+            </div>
+            <div style="display:flex; gap:8px;">
+              <button class="btn btn-outline btn-sm" onclick="loadApplications()">↻ Refresh</button>
+              <a href="internships.html" class="btn btn-primary btn-sm">+ Apply Page</a>
+            </div>
+          </div>
+
+          <div class="filter-bar">
+            <input type="text" id="appSearchInput" placeholder="Search applicant, college, role or APP-ID..." style="flex:1; min-width:240px;">
+            <select id="appStatusFilter">
+              <option value="all">All Statuses</option>
+              <option value="under_review">Under Review</option>
+              <option value="pending">Pending</option>
+              <option value="interview_scheduled">Interview Ready</option>
+              <option value="accepted">Accepted</option>
+              <option value="rejected">Rejected</option>
+            </select>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table" id="applicationsTable">
+              <thead>
+                <tr>
+                  <th>Tracking ID</th>
+                  <th>Applicant Name & Email</th>
+                  <th>Role Applied</th>
+                  <th>College & Branch</th>
+                  <th>Submitted</th>
+                  <th>Review Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="applicationsTbody">
+                <tr><td colspan="7" style="text-align:center; padding:30px; color:#64748b;">Loading applications...</td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
-      <!-- Section: Academic Notes Repository -->
-      <div class="portal-card">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
-          <div>
-            <h3 style="font-size:1.4rem; font-weight:700; margin:0 0 4px;">Academic Notes & Question Banks</h3>
-            <p style="color:#64748b; font-size:0.88rem; margin:0;">Live records in <code>/api/notes</code></p>
+      <!-- Tab 2: Academic Notes -->
+      <div class="tab-pane" id="tab-notes" style="display:none;">
+        <div class="portal-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:12px;">
+            <div>
+              <h3 style="font-size:1.35rem; font-weight:700; margin:0 0 4px;">Academic Notes & Question Banks</h3>
+              <p style="color:#64748b; font-size:0.88rem; margin:0;">Verified peer study materials in <code>/api/notes</code></p>
+            </div>
+            <div style="display:flex; gap:8px;">
+              <button class="btn btn-outline btn-sm" onclick="loadNotesTable()">↻ Refresh</button>
+              <a href="academic-support.html" class="btn btn-primary btn-sm">+ Browse Library</a>
+            </div>
           </div>
-          <a href="academic-support.html" class="btn btn-primary btn-sm">+ View Resource Library</a>
-        </div>
 
-        <div class="table-responsive">
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>Title & Subject</th>
-                <th>Branch & Sem</th>
-                <th>Type</th>
-                <th>Author</th>
-                <th>Downloads</th>
-              </tr>
-            </thead>
-            <tbody id="notesTbody">
-              <tr><td colspan="5" style="text-align:center; padding:30px; color:#64748b;">Loading notes...</td></tr>
-            </tbody>
-          </table>
+          <div class="filter-bar">
+            <input type="text" id="noteSearchInput" placeholder="Filter notes by subject or title..." style="flex:1; min-width:240px;">
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Title & Subject</th>
+                  <th>Branch & Sem</th>
+                  <th>Type</th>
+                  <th>Author</th>
+                  <th>Downloads</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="notesTbody">
+                <tr><td colspan="6" style="text-align:center; padding:30px; color:#64748b;">Loading notes...</td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
-      <!-- Section: REST API Live Sandbox -->
-      <div class="portal-card" style="background:#0b1526; color:#fff; border-color:#1e293b;">
-        <h3 style="font-size:1.3rem; font-weight:700; margin:0 0 8px; color:#fff;">Live REST API Endpoints</h3>
-        <p style="color:#94a3b8; font-size:0.88rem; margin-bottom:20px;">Test UNIMATE backend endpoints right now directly from your browser:</p>
-
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
-          <a href="/api/health" target="_blank" style="background:#13233f; padding:16px; border-radius:12px; text-decoration:none; color:#fff; display:block; border:1px solid #23385d;">
-            <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
-              <span class="badge-api">GET</span>
-              <span style="font-size:0.8rem; color:#60a5fa;">Open JSON &rarr;</span>
+      <!-- Tab 3: Project Team-Ups -->
+      <div class="tab-pane" id="tab-teams" style="display:none;">
+        <div class="portal-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:12px;">
+            <div>
+              <h3 style="font-size:1.35rem; font-weight:700; margin:0 0 4px;">Project Teammate Requests</h3>
+              <p style="color:#64748b; font-size:0.88rem; margin:0;">Peer collaboration applications via <code>/api/project-applications</code></p>
             </div>
-            <code style="font-size:0.9rem; color:#93c5fd;">/api/health</code>
-            <p style="font-size:0.8rem; color:#94a3b8; margin:6px 0 0;">System metrics, total counts, and live status.</p>
-          </a>
+            <button class="btn btn-outline btn-sm" onclick="loadTeamApplications()">↻ Refresh</button>
+          </div>
 
-          <a href="/api/internships" target="_blank" style="background:#13233f; padding:16px; border-radius:12px; text-decoration:none; color:#fff; display:block; border:1px solid #23385d;">
-            <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
-              <span class="badge-api">GET</span>
-              <span style="font-size:0.8rem; color:#60a5fa;">Open JSON &rarr;</span>
-            </div>
-            <code style="font-size:0.9rem; color:#93c5fd;">/api/internships</code>
-            <p style="font-size:0.8rem; color:#94a3b8; margin:6px 0 0;">All open internship roles, requirements & terms.</p>
-          </a>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Applicant</th>
+                  <th>Project Title</th>
+                  <th>Role / Skills</th>
+                  <th>College</th>
+                  <th>Submitted</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="teamAppsTbody">
+                <tr><td colspan="7" style="text-align:center; padding:30px; color:#64748b;">Loading teammate requests...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
 
-          <a href="/api/notes" target="_blank" style="background:#13233f; padding:16px; border-radius:12px; text-decoration:none; color:#fff; display:block; border:1px solid #23385d;">
-            <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
-              <span class="badge-api">GET</span>
-              <span style="font-size:0.8rem; color:#60a5fa;">Open JSON &rarr;</span>
+      <!-- Tab 4: Mentorship Bookings -->
+      <div class="tab-pane" id="tab-mentorship" style="display:none;">
+        <div class="portal-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:12px;">
+            <div>
+              <h3 style="font-size:1.35rem; font-weight:700; margin:0 0 4px;">1-on-1 Mentorship Bookings</h3>
+              <p style="color:#64748b; font-size:0.88rem; margin:0;">Scheduled mentor sessions via <code>/api/mentorship/bookings</code></p>
             </div>
-            <code style="font-size:0.9rem; color:#93c5fd;">/api/notes</code>
-            <p style="font-size:0.8rem; color:#94a3b8; margin:6px 0 0;">Study materials, lab manuals, and question banks.</p>
-          </a>
+            <button class="btn btn-outline btn-sm" onclick="loadMentorshipBookings()">↻ Refresh</button>
+          </div>
 
-          <a href="/api/community/posts" target="_blank" style="background:#13233f; padding:16px; border-radius:12px; text-decoration:none; color:#fff; display:block; border:1px solid #23385d;">
-            <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
-              <span class="badge-api">GET</span>
-              <span style="font-size:0.8rem; color:#60a5fa;">Open JSON &rarr;</span>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Student</th>
+                  <th>Mentorship Domain</th>
+                  <th>Target Date</th>
+                  <th>Goal / Notes</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="mentorshipTbody">
+                <tr><td colspan="6" style="text-align:center; padding:30px; color:#64748b;">Loading mentorship bookings...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 5: Contact Enquiries -->
+      <div class="tab-pane" id="tab-inquiries" style="display:none;">
+        <div class="portal-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:12px;">
+            <div>
+              <h3 style="font-size:1.35rem; font-weight:700; margin:0 0 4px;">Contact Inquiries & Moderation</h3>
+              <p style="color:#64748b; font-size:0.88rem; margin:0;">Inbound messages from contact and community report forms via <code>/api/contact</code></p>
             </div>
-            <code style="font-size:0.9rem; color:#93c5fd;">/api/community/posts</code>
-            <p style="font-size:0.8rem; color:#94a3b8; margin:6px 0 0;">Student discussions, upvotes, and replies feed.</p>
-          </a>
+            <button class="btn btn-outline btn-sm" onclick="loadContactInquiries()">↻ Refresh</button>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Sender</th>
+                  <th>Category</th>
+                  <th>Subject</th>
+                  <th>Message Snippet</th>
+                  <th>Received</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="inquiriesTbody">
+                <tr><td colspan="7" style="text-align:center; padding:30px; color:#64748b;">Loading inquiries...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 6: Subscribers -->
+      <div class="tab-pane" id="tab-newsletter" style="display:none;">
+        <div class="portal-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:12px;">
+            <div>
+              <h3 style="font-size:1.35rem; font-weight:700; margin:0 0 4px;">Weekly Newsletter Subscribers</h3>
+              <p style="color:#64748b; font-size:0.88rem; margin:0;">Students subscribed to digest & opportunity alerts</p>
+            </div>
+            <button class="btn btn-outline btn-sm" id="copySubscribersBtn">📋 Copy All Emails</button>
+          </div>
+
+          <div id="subscribersListContainer" style="padding:10px 0;">
+            <p style="color:#64748b;">Loading subscribers...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 7: API Sandbox & Health -->
+      <div class="tab-pane" id="tab-api" style="display:none;">
+        <div class="portal-card" style="background:#0b1526; color:#fff; border-color:#1e293b;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
+            <div>
+              <h3 style="font-size:1.35rem; font-weight:700; margin:0 0 4px; color:#fff;">Live REST API Endpoints</h3>
+              <p style="color:#94a3b8; font-size:0.88rem; margin:0;">Test and inspect server JSON responses directly:</p>
+            </div>
+            <a href="/api/system/export" class="btn btn-primary btn-sm" download="unimate-database-backup.json">
+              📥 Download Full DB Backup
+            </a>
+          </div>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+            <a href="/api/health" target="_blank" style="background:#13233f; padding:16px; border-radius:12px; text-decoration:none; color:#fff; display:block; border:1px solid #23385d;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                <span class="badge-api">GET</span>
+                <span style="font-size:0.8rem; color:#60a5fa;">Open JSON &rarr;</span>
+              </div>
+              <code style="font-size:0.9rem; color:#93c5fd;">/api/health</code>
+              <p style="font-size:0.8rem; color:#94a3b8; margin:6px 0 0;">System metrics, total counts, and live status.</p>
+            </a>
+
+            <a href="/api/internships" target="_blank" style="background:#13233f; padding:16px; border-radius:12px; text-decoration:none; color:#fff; display:block; border:1px solid #23385d;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                <span class="badge-api">GET</span>
+                <span style="font-size:0.8rem; color:#60a5fa;">Open JSON &rarr;</span>
+              </div>
+              <code style="font-size:0.9rem; color:#93c5fd;">/api/internships</code>
+              <p style="font-size:0.8rem; color:#94a3b8; margin:6px 0 0;">Open internship roles and requirements.</p>
+            </a>
+
+            <a href="/api/applications" target="_blank" style="background:#13233f; padding:16px; border-radius:12px; text-decoration:none; color:#fff; display:block; border:1px solid #23385d;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                <span class="badge-api">GET</span>
+                <span style="font-size:0.8rem; color:#60a5fa;">Open JSON &rarr;</span>
+              </div>
+              <code style="font-size:0.9rem; color:#93c5fd;">/api/applications</code>
+              <p style="font-size:0.8rem; color:#94a3b8; margin:6px 0 0;">All internship applications with review status.</p>
+            </a>
+
+            <a href="/api/notes" target="_blank" style="background:#13233f; padding:16px; border-radius:12px; text-decoration:none; color:#fff; display:block; border:1px solid #23385d;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                <span class="badge-api">GET</span>
+                <span style="font-size:0.8rem; color:#60a5fa;">Open JSON &rarr;</span>
+              </div>
+              <code style="font-size:0.9rem; color:#93c5fd;">/api/notes</code>
+              <p style="font-size:0.8rem; color:#94a3b8; margin:6px 0 0;">Study materials, lab manuals, and question banks.</p>
+            </a>
+
+            <a href="/api/community/posts" target="_blank" style="background:#13233f; padding:16px; border-radius:12px; text-decoration:none; color:#fff; display:block; border:1px solid #23385d;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                <span class="badge-api">GET</span>
+                <span style="font-size:0.8rem; color:#60a5fa;">Open JSON &rarr;</span>
+              </div>
+              <code style="font-size:0.9rem; color:#93c5fd;">/api/community/posts</code>
+              <p style="font-size:0.8rem; color:#94a3b8; margin:6px 0 0;">Discussion feed, likes, and replies.</p>
+            </a>
+
+            <a href="/api/project-applications" target="_blank" style="background:#13233f; padding:16px; border-radius:12px; text-decoration:none; color:#fff; display:block; border:1px solid #23385d;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                <span class="badge-api">GET</span>
+                <span style="font-size:0.8rem; color:#60a5fa;">Open JSON &rarr;</span>
+              </div>
+              <code style="font-size:0.9rem; color:#93c5fd;">/api/project-applications</code>
+              <p style="font-size:0.8rem; color:#94a3b8; margin:6px 0 0;">Collaborative teammate applications.</p>
+            </a>
+
+            <a href="/api/mentorship/bookings" target="_blank" style="background:#13233f; padding:16px; border-radius:12px; text-decoration:none; color:#fff; display:block; border:1px solid #23385d;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                <span class="badge-api">GET</span>
+                <span style="font-size:0.8rem; color:#60a5fa;">Open JSON &rarr;</span>
+              </div>
+              <code style="font-size:0.9rem; color:#93c5fd;">/api/mentorship/bookings</code>
+              <p style="font-size:0.8rem; color:#94a3b8; margin:6px 0 0;">1-on-1 mentorship bookings.</p>
+            </a>
+
+            <a href="/api/contact" target="_blank" style="background:#13233f; padding:16px; border-radius:12px; text-decoration:none; color:#fff; display:block; border:1px solid #23385d;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                <span class="badge-api">GET</span>
+                <span style="font-size:0.8rem; color:#60a5fa;">Open JSON &rarr;</span>
+              </div>
+              <code style="font-size:0.9rem; color:#93c5fd;">/api/contact</code>
+              <p style="font-size:0.8rem; color:#94a3b8; margin:6px 0 0;">General contact inquiries and safety reports.</p>
+            </a>
+          </div>
         </div>
       </div>
 
     </div>
   </section>
+
+  <!-- Application Detail Modal -->
+  <div class="modal-overlay" id="appDetailModal">
+    <div class="modal-card" style="max-width:580px;">
+      <button class="modal-close" data-close-modal>&times;</button>
+      <span class="badge badge-blue" id="modalAppId" style="margin-bottom:10px;">APP-ID</span>
+      <h3 class="h3" id="modalAppName" style="margin-bottom:4px;">Applicant Name</h3>
+      <p id="modalAppRole" style="color:#64748b; font-size:0.9rem; margin-bottom:18px;">Role</p>
+      
+      <div style="background:#f8fafc; border-radius:12px; padding:16px; margin-bottom:20px; font-size:0.88rem; line-height:1.6;">
+        <p style="margin-bottom:6px;"><strong>Email:</strong> <span id="modalAppEmail">-</span></p>
+        <p style="margin-bottom:6px;"><strong>University:</strong> <span id="modalAppUniv">-</span></p>
+        <p style="margin-bottom:6px;"><strong>Branch / Year:</strong> <span id="modalAppBranch">-</span></p>
+        <p style="margin-bottom:6px;"><strong>Portfolio / GitHub:</strong> <a href="#" id="modalAppLinks" target="_blank" style="color:#1d68f5;">-</a></p>
+        <div style="margin-top:12px; padding-top:12px; border-top:1px solid #e2e8f0;">
+          <strong>Statement of Purpose / Why UNIMATE:</strong>
+          <p id="modalAppSop" style="color:#334155; margin-top:4px; font-style:italic;">-</p>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:flex-end; gap:10px;">
+        <button class="btn btn-outline btn-sm" data-close-modal>Close</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Site Footer -->
   <footer class="site-footer">
@@ -306,6 +620,20 @@
 
   <script src="js/main.js"></script>
   <script>
+    // Portal Tabs Controller
+    document.querySelectorAll('.portal-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.portal-tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-pane').forEach(p => p.style.display = 'none');
+        btn.classList.add('active');
+        const tabId = btn.getAttribute('data-tab');
+        const target = document.getElementById(tabId);
+        if (target) target.style.display = 'block';
+      });
+    });
+
+    let currentApplications = [];
+
     async function loadMetrics() {
       try {
         const res = await fetch(`${API_BASE}/health`);
@@ -316,9 +644,24 @@
           document.getElementById('mNotes').innerText = data.metrics.totalNotes;
           document.getElementById('mDownloads').innerText = data.metrics.totalDownloads;
           document.getElementById('mPosts').innerText = data.metrics.communityDiscussions;
+          document.getElementById('mProjects').innerText = data.metrics.activeProjects;
+          document.getElementById('mTeamApps').innerText = data.metrics.projectApplications;
+          document.getElementById('mMentorship').innerText = data.metrics.mentorshipBookings;
+
+          // Badges
+          document.getElementById('badgeApps').innerText = data.metrics.totalApplications;
+          document.getElementById('badgeNotes').innerText = data.metrics.totalNotes;
+          document.getElementById('badgeTeams').innerText = data.metrics.projectApplications;
+          document.getElementById('badgeMent').innerText = data.metrics.mentorshipBookings;
+          document.getElementById('badgeInq').innerText = data.metrics.contactInquiries;
+          document.getElementById('badgeSubs').innerText = data.metrics.newsletterSubscribers;
+
+          if (data.uptime) {
+            document.getElementById('uptimeText').innerText = `Uptime: ${data.uptime}`;
+          }
         }
       } catch (err) {
-        console.error(err);
+        console.error('Metric load error:', err);
       }
     }
 
@@ -328,37 +671,89 @@
         const res = await fetch(`${API_BASE}/applications`);
         const data = await res.json();
         if (data.success && data.applications) {
-          tbody.innerHTML = data.applications.map(app => `
-            <tr>
-              <td><strong style="color:#1d68f5;">${app.id}</strong></td>
-              <td>
-                <div style="font-weight:600;">${app.fullName}</div>
-                <div style="font-size:0.8rem; color:#64748b;">${app.email}</div>
-              </td>
-              <td>${app.roleTitle}</td>
-              <td>
-                <div>${app.university}</div>
-                <div style="font-size:0.8rem; color:#64748b;">${app.branch} (${app.year || 'Student'})</div>
-              </td>
-              <td style="font-size:0.82rem; color:#64748b;">${new Date(app.submittedAt).toLocaleDateString()}</td>
-              <td>
-                <select class="status-select" onchange="updateAppStatus('${app.id}', this.value)">
-                  <option value="under_review" ${app.status === 'under_review' ? 'selected' : ''}>Under Review</option>
-                  <option value="pending" ${app.status === 'pending' ? 'selected' : ''}>Pending</option>
-                  <option value="interview_scheduled" ${app.status === 'interview_scheduled' ? 'selected' : ''}>Interview Ready</option>
-                  <option value="accepted" ${app.status === 'accepted' ? 'selected' : ''}>Accepted</option>
-                  <option value="rejected" ${app.status === 'rejected' ? 'selected' : ''}>Rejected</option>
-                </select>
-              </td>
-              <td>
-                ${app.github ? `<a href="${app.github}" target="_blank" class="btn btn-outline btn-sm" style="padding:4px 8px; font-size:0.75rem;">GitHub</a>` : ''}
-              </td>
-            </tr>
-          `).join('');
+          currentApplications = data.applications;
+          renderApplications();
         }
       } catch (err) {
         tbody.innerHTML = `<tr><td colspan="7" style="color:#ef4444; text-align:center;">Failed to load applications.</td></tr>`;
       }
+    }
+
+    function renderApplications() {
+      const tbody = document.getElementById('applicationsTbody');
+      const q = (document.getElementById('appSearchInput')?.value || '').toLowerCase();
+      const statusFilter = document.getElementById('appStatusFilter')?.value || 'all';
+
+      let filtered = currentApplications.filter(app => {
+        const matchesStatus = statusFilter === 'all' || app.status === statusFilter;
+        const matchesSearch = !q || 
+          app.id.toLowerCase().includes(q) ||
+          app.fullName.toLowerCase().includes(q) ||
+          app.email.toLowerCase().includes(q) ||
+          app.university.toLowerCase().includes(q) ||
+          app.roleTitle.toLowerCase().includes(q);
+        return matchesStatus && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:30px; color:#64748b;">No matching applications found.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(app => `
+        <tr>
+          <td><strong style="color:#1d68f5;">${app.id}</strong></td>
+          <td>
+            <div style="font-weight:700;">${app.fullName}</div>
+            <div style="font-size:0.8rem; color:#64748b;">${app.email}</div>
+          </td>
+          <td><span style="font-weight:600;">${app.roleTitle}</span></td>
+          <td>
+            <div>${app.university}</div>
+            <div style="font-size:0.8rem; color:#64748b;">${app.branch} (${app.year || 'Student'})</div>
+          </td>
+          <td style="font-size:0.82rem; color:#64748b;">${new Date(app.submittedAt).toLocaleDateString()}</td>
+          <td>
+            <select class="status-select" onchange="updateAppStatus('${app.id}', this.value)">
+              <option value="under_review" ${app.status === 'under_review' ? 'selected' : ''}>Under Review</option>
+              <option value="pending" ${app.status === 'pending' ? 'selected' : ''}>Pending</option>
+              <option value="interview_scheduled" ${app.status === 'interview_scheduled' ? 'selected' : ''}>Interview Ready</option>
+              <option value="accepted" ${app.status === 'accepted' ? 'selected' : ''}>Accepted</option>
+              <option value="rejected" ${app.status === 'rejected' ? 'selected' : ''}>Rejected</option>
+            </select>
+          </td>
+          <td>
+            <div style="display:flex; gap:6px;">
+              <button class="btn btn-outline btn-sm" style="padding:4px 8px; font-size:0.75rem;" onclick="viewAppModal('${app.id}')">View</button>
+              <button class="btn btn-outline btn-sm" style="padding:4px 8px; font-size:0.75rem; color:#ef4444; border-color:#fca5a5;" onclick="deleteApp('${app.id}')">&times;</button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function viewAppModal(id) {
+      const app = currentApplications.find(a => a.id === id);
+      if (!app) return;
+      document.getElementById('modalAppId').innerText = app.id;
+      document.getElementById('modalAppName').innerText = app.fullName;
+      document.getElementById('modalAppRole').innerText = app.roleTitle;
+      document.getElementById('modalAppEmail').innerText = app.email;
+      document.getElementById('modalAppUniv').innerText = app.university;
+      document.getElementById('modalAppBranch').innerText = `${app.branch} (${app.year || 'Student'})`;
+      
+      const linkEl = document.getElementById('modalAppLinks');
+      if (app.github || app.linkedin) {
+        linkEl.href = app.github || app.linkedin;
+        linkEl.innerText = app.github || app.linkedin;
+        linkEl.style.display = 'inline';
+      } else {
+        linkEl.innerText = 'No link provided';
+        linkEl.removeAttribute('href');
+      }
+
+      document.getElementById('modalAppSop').innerText = app.sop || 'No statement provided.';
+      document.getElementById('appDetailModal')?.classList.add('active');
     }
 
     async function updateAppStatus(id, newStatus) {
@@ -370,13 +765,28 @@
         });
         const data = await res.json();
         if (data.success) {
-          showToast(`Status for ${id} updated to ${newStatus}!`, 'success');
+          showToast(`Status for ${id} set to "${newStatus}"`, 'success');
           loadMetrics();
         } else {
           showToast(data.error || 'Update failed', 'error');
         }
       } catch (err) {
         showToast('Network error', 'error');
+      }
+    }
+
+    async function deleteApp(id) {
+      if (!confirm(`Are you sure you want to delete application ${id}?`)) return;
+      try {
+        const res = await fetch(`${API_BASE}/applications/${id}`, { method: 'DELETE' });
+        const d = await res.json();
+        if (d.success) {
+          showToast(`Application ${id} removed`, 'info');
+          loadApplications();
+          loadMetrics();
+        }
+      } catch (err) {
+        showToast('Delete error', 'error');
       }
     }
 
@@ -396,11 +806,178 @@
               <td><span class="badge badge-blue">${n.type}</span></td>
               <td>${n.author}</td>
               <td><strong>${n.downloads || 0}</strong></td>
+              <td>
+                <button class="btn btn-outline btn-sm" style="padding:4px 8px; font-size:0.75rem; color:#ef4444;" onclick="deleteNote('${n.id}')">Delete</button>
+              </td>
             </tr>
           `).join('');
         }
       } catch (err) {
-        tbody.innerHTML = `<tr><td colspan="5" style="color:#ef4444; text-align:center;">Failed to load notes.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="6" style="color:#ef4444; text-align:center;">Failed to load notes.</td></tr>`;
+      }
+    }
+
+    async function deleteNote(id) {
+      if (!confirm('Delete this note from library?')) return;
+      try {
+        const res = await fetch(`${API_BASE}/notes/${id}`, { method: 'DELETE' });
+        const d = await res.json();
+        if (d.success) {
+          showToast('Note deleted', 'info');
+          loadNotesTable();
+          loadMetrics();
+        }
+      } catch (e) {
+        showToast('Error deleting note', 'error');
+      }
+    }
+
+    async function loadTeamApplications() {
+      const tbody = document.getElementById('teamAppsTbody');
+      try {
+        const res = await fetch(`${API_BASE}/project-applications`);
+        const data = await res.json();
+        if (data.success && data.applications) {
+          if (data.applications.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:30px; color:#64748b;">No teammate requests yet.</td></tr>`;
+            return;
+          }
+          tbody.innerHTML = data.applications.map(a => `
+            <tr>
+              <td>
+                <strong>${a.name}</strong>
+                <div style="font-size:0.8rem; color:#64748b;">${a.email}</div>
+              </td>
+              <td><span style="font-weight:600; color:#1d68f5;">${a.projectTitle}</span></td>
+              <td>${a.roleInterested} <div style="font-size:0.8rem; color:#64748b;">${a.message || ''}</div></td>
+              <td>${a.college || 'College Student'}</td>
+              <td style="font-size:0.8rem; color:#64748b;">${new Date(a.submittedAt).toLocaleDateString()}</td>
+              <td><span class="badge badge-${a.status === 'accepted' ? 'blue' : 'neutral'}">${a.status || 'pending'}</span></td>
+              <td>
+                <button class="btn btn-outline btn-sm" style="padding:4px 8px; font-size:0.75rem; color:#ef4444;" onclick="deleteTeamApp('${a.id}')">&times;</button>
+              </td>
+            </tr>
+          `).join('');
+        }
+      } catch (e) {
+        tbody.innerHTML = `<tr><td colspan="7" style="color:#ef4444; text-align:center;">Failed to load team requests.</td></tr>`;
+      }
+    }
+
+    async function deleteTeamApp(id) {
+      if (!confirm('Remove this teammate request?')) return;
+      const res = await fetch(`${API_BASE}/project-applications/${id}`, { method: 'DELETE' });
+      if (res.ok) {
+        showToast('Request deleted', 'info');
+        loadTeamApplications();
+        loadMetrics();
+      }
+    }
+
+    async function loadMentorshipBookings() {
+      const tbody = document.getElementById('mentorshipTbody');
+      try {
+        const res = await fetch(`${API_BASE}/mentorship/bookings`);
+        const data = await res.json();
+        if (data.success && data.bookings) {
+          if (data.bookings.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:30px; color:#64748b;">No mentorship bookings logged.</td></tr>`;
+            return;
+          }
+          tbody.innerHTML = data.bookings.map(b => `
+            <tr>
+              <td>
+                <strong>${b.studentName}</strong>
+                <div style="font-size:0.8rem; color:#64748b;">${b.studentEmail}</div>
+              </td>
+              <td><strong>${b.domain}</strong></td>
+              <td>${b.preferredDate || b.date || 'Upcoming'}</td>
+              <td style="font-size:0.84rem; color:#475569;">${b.message || '-'}</td>
+              <td><span class="badge badge-blue">${b.status || 'Confirmed'}</span></td>
+              <td>
+                <button class="btn btn-outline btn-sm" style="padding:4px 8px; font-size:0.75rem; color:#ef4444;" onclick="deleteMentorship('${b.id}')">&times;</button>
+              </td>
+            </tr>
+          `).join('');
+        }
+      } catch (e) {
+        tbody.innerHTML = `<tr><td colspan="6" style="color:#ef4444; text-align:center;">Failed to load mentorship bookings.</td></tr>`;
+      }
+    }
+
+    async function deleteMentorship(id) {
+      if (!confirm('Remove this mentorship booking?')) return;
+      const res = await fetch(`${API_BASE}/mentorship/bookings/${id}`, { method: 'DELETE' });
+      if (res.ok) {
+        showToast('Booking deleted', 'info');
+        loadMentorshipBookings();
+        loadMetrics();
+      }
+    }
+
+    async function loadContactInquiries() {
+      const tbody = document.getElementById('inquiriesTbody');
+      try {
+        const res = await fetch(`${API_BASE}/contact`);
+        const data = await res.json();
+        if (data.success && data.inquiries) {
+          if (data.inquiries.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:30px; color:#64748b;">No inquiries found.</td></tr>`;
+            return;
+          }
+          tbody.innerHTML = data.inquiries.map(c => `
+            <tr>
+              <td>
+                <strong>${c.name}</strong>
+                <div style="font-size:0.8rem; color:#64748b;">${c.email}</div>
+              </td>
+              <td><span class="badge badge-neutral">${c.category || 'General'}</span></td>
+              <td><strong>${c.subject || 'Inquiry'}</strong></td>
+              <td style="font-size:0.84rem; color:#475569; max-width:240px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${c.message}</td>
+              <td style="font-size:0.8rem; color:#64748b;">${new Date(c.createdAt).toLocaleDateString()}</td>
+              <td><span class="badge badge-blue">${c.status || 'open'}</span></td>
+              <td>
+                <button class="btn btn-outline btn-sm" style="padding:4px 8px; font-size:0.75rem; color:#ef4444;" onclick="deleteInquiry('${c.id}')">&times;</button>
+              </td>
+            </tr>
+          `).join('');
+        }
+      } catch (e) {
+        tbody.innerHTML = `<tr><td colspan="7" style="color:#ef4444; text-align:center;">Failed to load inquiries.</td></tr>`;
+      }
+    }
+
+    async function deleteInquiry(id) {
+      if (!confirm('Remove this inquiry?')) return;
+      const res = await fetch(`${API_BASE}/contact/${id}`, { method: 'DELETE' });
+      if (res.ok) {
+        showToast('Inquiry removed', 'info');
+        loadContactInquiries();
+        loadMetrics();
+      }
+    }
+
+    async function loadSubscribers() {
+      const container = document.getElementById('subscribersListContainer');
+      try {
+        const res = await fetch(`${API_BASE}/newsletter/subscribers`);
+        const data = await res.json();
+        if (data.success && data.subscribers) {
+          container.innerHTML = `
+            <p style="font-weight:700; margin-bottom:12px;">Total Registered Emails: ${data.subscribers.length}</p>
+            <div style="display:flex; flex-wrap:wrap; gap:8px;">
+              ${data.subscribers.map(email => `
+                <span style="background:#f1f5f9; border:1px solid #cbd5e1; padding:6px 12px; border-radius:8px; font-size:0.88rem;">${email}</span>
+              `).join('')}
+            </div>
+          `;
+          document.getElementById('copySubscribersBtn').onclick = () => {
+            navigator.clipboard.writeText(data.subscribers.join(', '));
+            showToast('All subscriber emails copied to clipboard!', 'success');
+          };
+        }
+      } catch (e) {
+        container.innerHTML = `<p style="color:#ef4444;">Failed to load subscribers.</p>`;
       }
     }
 
@@ -408,7 +985,16 @@
       loadMetrics();
       loadApplications();
       loadNotesTable();
-      setInterval(loadMetrics, 10000); // 10s auto refresh
+      loadTeamApplications();
+      loadMentorshipBookings();
+      loadContactInquiries();
+      loadSubscribers();
+
+      // Search & filter listeners
+      document.getElementById('appSearchInput')?.addEventListener('input', renderApplications);
+      document.getElementById('appStatusFilter')?.addEventListener('change', renderApplications);
+
+      setInterval(loadMetrics, 12000); // 12s auto refresh
     });
   </script>
 </body>

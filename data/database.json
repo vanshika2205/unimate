@@ -71,6 +71,38 @@
   ],
   "applications": [
     {
+      "id": "APP-8005",
+      "roleId": "role-custom",
+      "roleTitle": "Core Contributor Intern",
+      "fullName": "EndToEnd Test Scholar",
+      "email": "testscholar@university.edu",
+      "phone": "",
+      "university": "National Institute of Tech",
+      "branch": "Computer Science",
+      "year": "3rd Year",
+      "github": "",
+      "linkedin": "",
+      "sop": "Passionate about educational software.",
+      "status": "accepted",
+      "submittedAt": "2026-10-23T14:45:55.514Z"
+    },
+    {
+      "id": "APP-8219",
+      "roleId": "role-custom",
+      "roleTitle": "Core Contributor Intern",
+      "fullName": "EndToEnd Test Scholar",
+      "email": "testscholar@university.edu",
+      "phone": "",
+      "university": "National Institute of Tech",
+      "branch": "Computer Science",
+      "year": "3rd Year",
+      "github": "",
+      "linkedin": "",
+      "sop": "Passionate about educational software.",
+      "status": "accepted",
+      "submittedAt": "2026-10-23T14:45:33.303Z"
+    },
+    {
       "id": "APP-2647",
       "roleId": "role-custom",
       "roleTitle": "Frontend Developer Intern",
@@ -120,6 +152,46 @@
     }
   ],
   "notes": [
+    {
+      "id": "note-1792766755522",
+      "title": "Automata Theory Quick Revision",
+      "subject": "Theory of Computation",
+      "branch": "Computer Science",
+      "semester": 5,
+      "type": "Notes",
+      "author": "Test Scholar Lead",
+      "downloads": 2,
+      "fileSize": "3.2 MB",
+      "tags": [
+        "TOC",
+        "DFA",
+        "NFA",
+        "Turing"
+      ],
+      "downloadUrl": "#",
+      "verified": true,
+      "createdAt": "2026-10-23T14:45:55.522Z"
+    },
+    {
+      "id": "note-1792766733308",
+      "title": "Automata Theory Quick Revision",
+      "subject": "Theory of Computation",
+      "branch": "Computer Science",
+      "semester": 5,
+      "type": "Notes",
+      "author": "Test Scholar Lead",
+      "downloads": 2,
+      "fileSize": "3.2 MB",
+      "tags": [
+        "TOC",
+        "DFA",
+        "NFA",
+        "Turing"
+      ],
+      "downloadUrl": "#",
+      "verified": true,
+      "createdAt": "2026-10-23T14:45:33.308Z"
+    },
     {
       "id": "note-1",
       "title": "Data Structures & Algorithms Comprehensive Guide",
@@ -217,6 +289,56 @@
     }
   ],
   "community_posts": [
+    {
+      "id": "post-1792766755523",
+      "authorName": "Rohan Test",
+      "authorRole": "UNIMATE Member",
+      "avatarColor": "#059669",
+      "channel": "hackathons",
+      "title": "How do you structure Git branches for hackathons?",
+      "content": "Any tips on feature branching vs trunk based development?",
+      "likes": 2,
+      "likedBy": [],
+      "tags": [
+        "Git",
+        "Teamwork"
+      ],
+      "createdAt": "2026-10-23T14:45:55.523Z",
+      "replies": [
+        {
+          "id": "rep-1792766755524",
+          "authorName": "Senior Dev",
+          "authorRole": "Community Member",
+          "content": "Use short lived feature branches!",
+          "createdAt": "2026-10-23T14:45:55.524Z"
+        }
+      ]
+    },
+    {
+      "id": "post-1792766733310",
+      "authorName": "Rohan Test",
+      "authorRole": "UNIMATE Member",
+      "avatarColor": "#7c3aed",
+      "channel": "hackathons",
+      "title": "How do you structure Git branches for hackathons?",
+      "content": "Any tips on feature branching vs trunk based development?",
+      "likes": 2,
+      "likedBy": [],
+      "tags": [
+        "Git",
+        "Teamwork"
+      ],
+      "createdAt": "2026-10-23T14:45:33.310Z",
+      "replies": [
+        {
+          "id": "rep-1792766733312",
+          "authorName": "Senior Dev",
+          "authorRole": "Community Member",
+          "content": "Use short lived feature branches!",
+          "createdAt": "2026-10-23T14:45:33.312Z"
+        }
+      ]
+    },
     {
       "id": "post-1",
       "authorName": "Kabir Patel",
@@ -343,8 +465,53 @@
       "status": "Open for Teammates"
     }
   ],
-  "project_applications": [],
+  "project_applications": [
+    {
+      "id": "join-1792766755525",
+      "projectId": "proj-1",
+      "projectTitle": "Campus Resource Finder",
+      "name": "Kavya",
+      "email": "kavya@test.edu",
+      "college": "",
+      "roleInterested": "Frontend Developer",
+      "message": "Ready to build",
+      "status": "pending",
+      "submittedAt": "2026-10-23T14:45:55.525Z"
+    },
+    {
+      "id": "join-1792766733312",
+      "projectId": "proj-1",
+      "projectTitle": "Campus Resource Finder",
+      "name": "Kavya",
+      "email": "kavya@test.edu",
+      "college": "",
+      "roleInterested": "Frontend Developer",
+      "message": "Ready to build",
+      "status": "pending",
+      "submittedAt": "2026-10-23T14:45:33.312Z"
+    }
+  ],
   "mentorship_bookings": [
+    {
+      "id": "ment-1792766755528",
+      "studentName": "Aditya",
+      "studentEmail": "aditya@test.edu",
+      "domain": "Cloud & DevOps",
+      "preferredDate": "2026-10-26",
+      "message": "",
+      "status": "Confirmed",
+      "createdAt": "2026-10-23T14:45:55.528Z"
+    },
+    {
+      "id": "ment-1792766733313",
+      "studentName": "Aditya",
+      "studentEmail": "aditya@test.edu",
+      "domain": "Cloud & DevOps",
+      "preferredDate": "2026-10-26",
+      "message": "",
+      "status": "Confirmed",
+      "createdAt": "2026-10-23T14:45:33.313Z"
+    },
     {
       "id": "ment-1",
       "mentorName": "Vikramaditya (Senior SWE)",
@@ -357,6 +524,28 @@
   ],
   "contact_inquiries": [
     {
+      "id": "con-1792766755529",
+      "name": "Priya",
+      "email": "priya@test.edu",
+      "college": "",
+      "subject": "General Inquiry",
+      "category": "General",
+      "message": "Hello UNIMATE team",
+      "status": "open",
+      "createdAt": "2026-10-23T14:45:55.529Z"
+    },
+    {
+      "id": "con-1792766733314",
+      "name": "Priya",
+      "email": "priya@test.edu",
+      "college": "",
+      "subject": "General Inquiry",
+      "category": "General",
+      "message": "Hello UNIMATE team",
+      "status": "open",
+      "createdAt": "2026-10-23T14:45:33.314Z"
+    },
+    {
       "id": "con-1",
       "name": "Rohan Mehra",
       "email": "rohan.mehra@gmail.com",
@@ -368,6 +557,7 @@
   ],
   "subscribers": [
     "student1@university.edu",
-    "campus.tech@college.edu"
+    "campus.tech@college.edu",
+    "weeklydigest@college.edu"
   ]
 }
