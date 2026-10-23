@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Training & Mentorship | UNIMATE</title>
+  <meta name="description" content="1-on-1 mentorship, live workshops, and structured training across Web Development, AI/ML, Design, and Career Prep.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/images/unimate_emblem.png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+</head>
+<body>
+
+  <!-- Site Navigation -->
+  <header class="site-header" id="siteHeader">
+    <div class="container">
+      <nav class="navbar" aria-label="Main Navigation">
+        <a href="index.html" class="brand" aria-label="UNIMATE Home">
+          <div class="brand-badge">
+            <img src="assets/images/unimate_emblem.png" alt="UNIMATE Emblem" class="brand-icon">
+          </div>
+          <div class="brand-text">
+            <span class="brand-title">UNIMATE</span>
+            <span class="brand-subtitle">EMPOWERING STUDENT JOURNEYS</span>
+          </div>
+        </a>
+
+        <ul class="nav-menu" id="navMenu">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item has-dropdown">
+            <a href="training-mentorship.html" class="nav-link active">
+              Explore
+              <svg class="dropdown-icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 4.5L6 8L9.5 4.5"/></svg>
+            </a>
+            <div class="dropdown-menu">
+              <a href="learning-paths.html" class="dropdown-item">Learning Paths</a>
+              <a href="academic-support.html" class="dropdown-item">Academic Support</a>
+              <a href="projects.html" class="dropdown-item">Projects & Briefs</a>
+              <a href="internships.html" class="dropdown-item">Internships & Opportunities</a>
+              <a href="training-mentorship.html" class="dropdown-item">Training & Mentorship</a>
+            </div>
+          </li>
+          <li class="nav-item"><a href="learning-paths.html" class="nav-link">Learning Paths</a></li>
+          <li class="nav-item"><a href="internships.html" class="nav-link">Opportunities</a></li>
+          <li class="nav-item"><a href="community.html" class="nav-link">Community</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">About</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="contact.html" class="btn btn-primary">
+            Get Started
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg>
+          </a>
+        </div>
+
+        <button class="mobile-toggle" aria-label="Toggle navigation">&#9776;</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-grid">
+        <div>
+          <span class="overline overline-dark">GUIDANCE THAT MEETS YOU WHERE YOU ARE</span>
+          <h1 class="page-hero-title">A little guidance.<br>A clearer direction.</h1>
+          <p class="page-hero-desc">
+            Explore training and mentorship across technical, creative and career-ready skills. Get personal feedback on your code, portfolio and semester goals.
+          </p>
+        </div>
+        <div class="page-hero-aside">
+          <h4>Meet your mentor</h4>
+          <p>
+            Details shared after enquiry. Discuss your current level, the work you want to build and where you need feedback.
+          </p>
+          <a href="#mentorForm" class="btn btn-secondary-dark btn-sm">Enquire Now &darr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skill Tracks Grid -->
+  <section style="padding: 100px 0; background: var(--bg-white);">
+    <div class="container">
+      <span class="overline">SKILL TRACKS</span>
+      <h2 class="h2" style="margin-bottom: 48px;">Choose the skill you want to grow.</h2>
+
+      <div class="paths-grid" style="grid-template-columns: repeat(4, 1fr); gap: 20px;">
+        <div class="support-feature-card">
+          <h3 class="support-feature-title">Web Development</h3>
+          <p class="support-feature-desc" style="margin-bottom:16px;">HTML/CSS, React, Node.js and full-stack project building.</p>
+          <a href="#mentorForm" class="path-card-link">Enquire &rarr;</a>
+        </div>
+
+        <div class="support-feature-card">
+          <h3 class="support-feature-title">AI/ML & Data Science</h3>
+          <p class="support-feature-desc" style="margin-bottom:16px;">Python, PyTorch, model building and dataset preparation.</p>
+          <a href="#mentorForm" class="path-card-link">Enquire &rarr;</a>
+        </div>
+
+        <div class="support-feature-card">
+          <h3 class="support-feature-title">UI/UX & Design</h3>
+          <p class="support-feature-desc" style="margin-bottom:16px;">Figma, user flows, design tokens and portfolio case studies.</p>
+          <a href="#mentorForm" class="path-card-link">Enquire &rarr;</a>
+        </div>
+
+        <div class="support-feature-card">
+          <h3 class="support-feature-title">Video & Motion</h3>
+          <p class="support-feature-desc" style="margin-bottom:16px;">Visual editing, Premiere/After Effects and creative storytelling.</p>
+          <a href="#mentorForm" class="path-card-link">Enquire &rarr;</a>
+        </div>
+
+        <div class="support-feature-card">
+          <h3 class="support-feature-title">App Development</h3>
+          <p class="support-feature-desc" style="margin-bottom:16px;">Flutter, React Native, mobile state and API integration.</p>
+          <a href="#mentorForm" class="path-card-link">Enquire &rarr;</a>
+        </div>
+
+        <div class="support-feature-card">
+          <h3 class="support-feature-title">Data Analytics</h3>
+          <p class="support-feature-desc" style="margin-bottom:16px;">SQL querying, PowerBI, Tableau and insight presentations.</p>
+          <a href="#mentorForm" class="path-card-link">Enquire &rarr;</a>
+        </div>
+
+        <div class="support-feature-card">
+          <h3 class="support-feature-title">Cloud & DevOps</h3>
+          <p class="support-feature-desc" style="margin-bottom:16px;">Linux, Git, Docker, CI/CD pipelines and AWS/GCP essentials.</p>
+          <a href="#mentorForm" class="path-card-link">Enquire &rarr;</a>
+        </div>
+
+        <div class="support-feature-card">
+          <h3 class="support-feature-title">Career Prep</h3>
+          <p class="support-feature-desc" style="margin-bottom:16px;">Resume reviews, mock interviews and LinkedIn presentation.</p>
+          <a href="#mentorForm" class="path-card-link">Enquire &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Forms Section -->
+  <section id="mentorForm" style="padding: 100px 0; background: var(--bg-soft-blue); border-top: 1px solid var(--border-light);">
+    <div class="container">
+      <div class="academic-grid">
+        <!-- Form 1: Mentorship -->
+        <div class="form-card">
+          <h3 class="h3" style="margin-bottom: 20px;">Training or mentorship enquiry</h3>
+          <form data-ajax-form data-endpoint="/api/mentorship/book">
+            <div class="form-group">
+              <label class="form-label">Full Name *</label>
+              <input type="text" name="studentName" class="form-control" placeholder="Your name" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Email for a reply *</label>
+              <input type="email" name="studentEmail" class="form-control" placeholder="you@example.com" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Track of interest *</label>
+              <select name="domain" class="form-control" required>
+                <option value="Web Development Mentorship">Web Development</option>
+                <option value="AI/ML & Data Science Guidance">AI/ML & Data Science</option>
+                <option value="UI/UX & Product Design Review">UI/UX & Design</option>
+                <option value="Cloud, DevOps & System Design">Cloud & DevOps</option>
+                <option value="Career & Resume Preparation">Career & Resume Prep</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Your current level & goal *</label>
+              <textarea name="message" class="form-control" rows="3" placeholder="What have you tried, and what would you like to achieve?" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%;">
+              Send learning enquiry
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg>
+            </button>
+            <p style="font-size:0.8rem; color:var(--text-muted); margin-top:12px; text-align:center;">
+              Fees, schedules and availability will be discussed before registration.
+            </p>
+          </form>
+        </div>
+
+        <!-- Form 2: Workshop Interest -->
+        <div class="form-card">
+          <h3 class="h3" style="margin-bottom: 20px;">Workshop interest registration</h3>
+          <p class="subtext" style="font-size:0.92rem; margin-bottom:20px;">
+            Be notified when topic-specific weekend workshops or project build-along sessions open up.
+          </p>
+          <form data-ajax-form data-success-message="Workshop interest registered! You will receive early invites.">
+            <div class="form-group">
+              <label class="form-label">Full Name *</label>
+              <input type="text" class="form-control" placeholder="Your name" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Email *</label>
+              <input type="email" class="form-control" placeholder="you@example.com" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Workshop topic of interest *</label>
+              <select class="form-control" required>
+                <option value="react-search">Building a Campus Search with React & APIs</option>
+                <option value="git-workflow">Git Collaboration & Branching for Student Teams</option>
+                <option value="figma-portfolio">Designing & Presenting a Clean Portfolio Case Study</option>
+                <option value="ml-basics">Practical Machine Learning from Scratch</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%;">
+              Register workshop interest
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Become a Mentor Section -->
+  <section style="padding: 100px 0; background: var(--bg-white);">
+    <div class="container">
+      <div class="academic-grid">
+        <div>
+          <span class="overline">GIVE BACK & LEAD</span>
+          <h2 class="h2">Want to mentor or<br>lead a workshop?</h2>
+          <p class="subtext" style="margin: 20px 0;">
+            Share your domain, relevant experience and the kind of support you could offer. Onboarding is subject to discussion and review.
+          </p>
+        </div>
+
+        <div class="form-card">
+          <h3 class="h3" style="margin-bottom: 20px;">Mentor onboarding expression</h3>
+          <form data-ajax-form data-success-message="Thank you! Our community leads will review your mentor profile and get in touch.">
+            <div class="form-group">
+              <label class="form-label">Full Name *</label>
+              <input type="text" class="form-control" placeholder="Your name" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Email *</label>
+              <input type="email" class="form-control" placeholder="you@example.com" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Domain expertise & LinkedIn/GitHub *</label>
+              <input type="text" class="form-control" placeholder="e.g. Frontend developer, https://linkedin.com/..." required>
+            </div>
+
+            <button type="submit" class="btn btn-outline" style="width: 100%;">
+              Submit mentor expression &rarr;
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand" style="margin-bottom: 18px;">
+            <div class="brand-badge">
+              <img src="assets/images/unimate_emblem.png" alt="UNIMATE Emblem" class="brand-icon">
+            </div>
+            <div class="brand-text">
+              <span class="brand-title">UNIMATE</span>
+              <span class="brand-subtitle">EMPOWERING STUDENT JOURNEYS</span>
+            </div>
+          </a>
+          <p class="footer-brand-desc">
+            Built for students, for the journey ahead. Academic support, practical skills and a community to grow with.
+          </p>
+          <div class="footer-pillars">LEARN • BUILD • GROW • BELONG</div>
+        </div>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4 class="footer-nav-title">Explore</h4>
+          <ul class="footer-links">
+            <li><a href="learning-paths.html" class="footer-link">Learning Paths</a></li>
+            <li><a href="academic-support.html" class="footer-link">Academic Support</a></li>
+            <li><a href="projects.html" class="footer-link">Projects</a></li>
+            <li><a href="internships.html" class="footer-link">Internships & Opportunities</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4 class="footer-nav-title">Connect</h4>
+          <ul class="footer-links">
+            <li><a href="community.html" class="footer-link">Community</a></li>
+            <li><a href="training-mentorship.html" class="footer-link">Training & Mentorship</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+            <li><a href="contact.html" class="footer-link">About UNIMATE</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 UNIMATE. Empowering student journeys.</div>
+        <div class="footer-legal-links">
+          <a href="contact.html" class="footer-legal-link">Privacy</a>
+          <span>•</span>
+          <a href="contact.html" class="footer-legal-link">Terms</a>
+          <span>•</span>
+          <a href="contact.html" class="footer-legal-link">Contact</a>
+          <span>•</span>
+          <a href="https://instagram.com" target="_blank" rel="noopener" class="footer-legal-link">@unimate</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

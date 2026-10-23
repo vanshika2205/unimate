@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student & Admin Portal | UNIMATE</title>
+  <meta name="description" content="Manage internship applications, academic notes, community discussions and live API services.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/images/unimate_emblem.png">
+  <style>
+    .portal-hero {
+      background: var(--bg-dark);
+      padding: 120px 0 60px;
+      color: #fff;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 36px;
+    }
+    .metric-card {
+      background: rgba(15, 28, 50, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 24px;
+      backdrop-filter: blur(10px);
+    }
+    .metric-num {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #60a5fa;
+      margin-bottom: 4px;
+    }
+    .metric-label {
+      font-size: 0.88rem;
+      color: #94a3b8;
+      font-weight: 500;
+    }
+    .portal-section {
+      padding: 60px 0;
+      background: #f8fafc;
+    }
+    .portal-card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+      margin-bottom: 32px;
+    }
+    .table-responsive {
+      overflow-x: auto;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+    }
+    .data-table th {
+      background: #f1f5f9;
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+      color: #334155;
+      border-bottom: 2px solid #e2e8f0;
+    }
+    .data-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #f1f5f9;
+      color: #1e293b;
+    }
+    .data-table tr:hover {
+      background: #f8fafc;
+    }
+    .status-select {
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border: 1px solid #cbd5e1;
+      background: #fff;
+      cursor: pointer;
+    }
+    .badge-api {
+      background: #0284c7;
+      color: #fff;
+      font-family: monospace;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Navigation -->
+  <header class="site-header" id="siteHeader">
+    <div class="container">
+      <nav class="navbar" aria-label="Main Navigation">
+        <a href="index.html" class="brand" aria-label="UNIMATE Home">
+          <div class="brand-badge">
+            <img src="assets/images/unimate_emblem.png" alt="UNIMATE Emblem" class="brand-icon">
+          </div>
+          <div class="brand-text">
+            <span class="brand-title">UNIMATE</span>
+            <span class="brand-subtitle">EMPOWERING STUDENT JOURNEYS</span>
+          </div>
+        </a>
+
+        <ul class="nav-menu" id="navMenu">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="learning-paths.html" class="nav-link">Learning Paths</a></li>
+          <li class="nav-item"><a href="academic-support.html" class="nav-link">Academic Support</a></li>
+          <li class="nav-item"><a href="projects.html" class="nav-link">Projects</a></li>
+          <li class="nav-item"><a href="internships.html" class="nav-link">Opportunities</a></li>
+          <li class="nav-item"><a href="community.html" class="nav-link">Community</a></li>
+          <li class="nav-item"><a href="portal.html" class="nav-link active">Portal</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="contact.html" class="btn btn-primary">
+            Get Started
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg>
+          </a>
+        </div>
+
+        <button class="mobile-toggle" aria-label="Toggle navigation">&#9776;</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Portal Hero & Live Stats -->
+  <section class="portal-hero">
+    <div class="container">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+        <div>
+          <span class="overline overline-dark">BACKEND & STUDENT CONTROLS</span>
+          <h1 style="font-size: 2.4rem; font-weight:800; margin: 8px 0;">UNIMATE Live Operations Portal</h1>
+          <p style="color:#94a3b8; font-size:1.05rem;">
+            Real-time backend data sync across internship applications, study notes library, and community threads.
+          </p>
+        </div>
+        <div>
+          <span id="serverBadge" style="display:inline-flex; align-items:center; gap:8px; background:rgba(34,197,94,0.15); border:1px solid rgba(34,197,94,0.3); color:#4ade80; padding:8px 18px; border-radius:30px; font-weight:700; font-size:0.85rem;">
+            <span style="width:10px; height:10px; border-radius:50%; background:#22c55e; display:inline-block; animation: pulse 1.5s infinite;"></span>
+            SERVER ONLINE (Port 3000)
+          </span>
+        </div>
+      </div>
+
+      <!-- Metrics -->
+      <div class="metric-grid" id="portalMetrics">
+        <div class="metric-card">
+          <div class="metric-num" id="mApps">--</div>
+          <div class="metric-label">Total Applications</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num" id="mPending" style="color:#f59e0b;">--</div>
+          <div class="metric-label">Pending Reviews</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num" id="mNotes" style="color:#10b981;">--</div>
+          <div class="metric-label">Verified Study Notes</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num" id="mDownloads" style="color:#8b5cf6;">--</div>
+          <div class="metric-label">Total Note Downloads</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num" id="mPosts" style="color:#ec4899;">--</div>
+          <div class="metric-label">Community Threads</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Management Sections -->
+  <section class="portal-section">
+    <div class="container">
+
+      <!-- Section: Internship Applications -->
+      <div class="portal-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
+          <div>
+            <h3 style="font-size:1.4rem; font-weight:700; margin:0 0 4px;">Student Internship Applications</h3>
+            <p style="color:#64748b; font-size:0.88rem; margin:0;">Live records submitted through <code>/api/applications</code></p>
+          </div>
+          <button class="btn btn-outline btn-sm" onclick="loadApplications()">↻ Refresh Applications</button>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table" id="applicationsTable">
+            <thead>
+              <tr>
+                <th>Tracking ID</th>
+                <th>Applicant Name</th>
+                <th>Role Applied</th>
+                <th>College / Branch</th>
+                <th>Submitted</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="applicationsTbody">
+              <tr><td colspan="7" style="text-align:center; padding:30px; color:#64748b;">Loading applications...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section: Academic Notes Repository -->
+      <div class="portal-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
+          <div>
+            <h3 style="font-size:1.4rem; font-weight:700; margin:0 0 4px;">Academic Notes & Question Banks</h3>
+            <p style="color:#64748b; font-size:0.88rem; margin:0;">Live records in <code>/api/notes</code></p>
+          </div>
+          <a href="academic-support.html" class="btn btn-primary btn-sm">+ View Resource Library</a>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Title & Subject</th>
+                <th>Branch & Sem</th>
+                <th>Type</th>
+                <th>Author</th>
+                <th>Downloads</th>
+              </tr>
+            </thead>
+            <tbody id="notesTbody">
+              <tr><td colspan="5" style="text-align:center; padding:30px; color:#64748b;">Loading notes...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section: REST API Live Sandbox -->
+      <div class="portal-card" style="background:#0b1526; color:#fff; border-color:#1e293b;">
+        <h3 style="font-size:1.3rem; font-weight:700; margin:0 0 8px; color:#fff;">Live REST API Endpoints</h3>
+        <p style="color:#94a3b8; font-size:0.88rem; margin-bottom:20px;">Test UNIMATE backend endpoints right now directly from your browser:</p>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+          <a href="/api/health" target="_blank" style="background:#13233f; padding:16px; border-radius:12px; text-decoration:none; color:#fff; display:block; border:1px solid #23385d;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+              <span class="badge-api">GET</span>
+              <span style="font-size:0.8rem; color:#60a5fa;">Open JSON &rarr;</span>
+            </div>
+            <code style="font-size:0.9rem; color:#93c5fd;">/api/health</code>
+            <p style="font-size:0.8rem; color:#94a3b8; margin:6px 0 0;">System metrics, total counts, and live status.</p>
+          </a>
+
+          <a href="/api/internships" target="_blank" style="background:#13233f; padding:16px; border-radius:12px; text-decoration:none; color:#fff; display:block; border:1px solid #23385d;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+              <span class="badge-api">GET</span>
+              <span style="font-size:0.8rem; color:#60a5fa;">Open JSON &rarr;</span>
+            </div>
+            <code style="font-size:0.9rem; color:#93c5fd;">/api/internships</code>
+            <p style="font-size:0.8rem; color:#94a3b8; margin:6px 0 0;">All open internship roles, requirements & terms.</p>
+          </a>
+
+          <a href="/api/notes" target="_blank" style="background:#13233f; padding:16px; border-radius:12px; text-decoration:none; color:#fff; display:block; border:1px solid #23385d;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+              <span class="badge-api">GET</span>
+              <span style="font-size:0.8rem; color:#60a5fa;">Open JSON &rarr;</span>
+            </div>
+            <code style="font-size:0.9rem; color:#93c5fd;">/api/notes</code>
+            <p style="font-size:0.8rem; color:#94a3b8; margin:6px 0 0;">Study materials, lab manuals, and question banks.</p>
+          </a>
+
+          <a href="/api/community/posts" target="_blank" style="background:#13233f; padding:16px; border-radius:12px; text-decoration:none; color:#fff; display:block; border:1px solid #23385d;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+              <span class="badge-api">GET</span>
+              <span style="font-size:0.8rem; color:#60a5fa;">Open JSON &rarr;</span>
+            </div>
+            <code style="font-size:0.9rem; color:#93c5fd;">/api/community/posts</code>
+            <p style="font-size:0.8rem; color:#94a3b8; margin:6px 0 0;">Student discussions, upvotes, and replies feed.</p>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 UNIMATE. Empowering student journeys.</div>
+        <div class="footer-legal-links">
+          <a href="contact.html" class="footer-legal-link">Privacy</a>
+          <span>•</span>
+          <a href="contact.html" class="footer-legal-link">Terms</a>
+          <span>•</span>
+          <a href="contact.html" class="footer-legal-link">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    async function loadMetrics() {
+      try {
+        const res = await fetch(`${API_BASE}/health`);
+        const data = await res.json();
+        if (data && data.metrics) {
+          document.getElementById('mApps').innerText = data.metrics.totalApplications;
+          document.getElementById('mPending').innerText = data.metrics.pendingReviews;
+          document.getElementById('mNotes').innerText = data.metrics.totalNotes;
+          document.getElementById('mDownloads').innerText = data.metrics.totalDownloads;
+          document.getElementById('mPosts').innerText = data.metrics.communityDiscussions;
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    async function loadApplications() {
+      const tbody = document.getElementById('applicationsTbody');
+      try {
+        const res = await fetch(`${API_BASE}/applications`);
+        const data = await res.json();
+        if (data.success && data.applications) {
+          tbody.innerHTML = data.applications.map(app => `
+            <tr>
+              <td><strong style="color:#1d68f5;">${app.id}</strong></td>
+              <td>
+                <div style="font-weight:600;">${app.fullName}</div>
+                <div style="font-size:0.8rem; color:#64748b;">${app.email}</div>
+              </td>
+              <td>${app.roleTitle}</td>
+              <td>
+                <div>${app.university}</div>
+                <div style="font-size:0.8rem; color:#64748b;">${app.branch} (${app.year || 'Student'})</div>
+              </td>
+              <td style="font-size:0.82rem; color:#64748b;">${new Date(app.submittedAt).toLocaleDateString()}</td>
+              <td>
+                <select class="status-select" onchange="updateAppStatus('${app.id}', this.value)">
+                  <option value="under_review" ${app.status === 'under_review' ? 'selected' : ''}>Under Review</option>
+                  <option value="pending" ${app.status === 'pending' ? 'selected' : ''}>Pending</option>
+                  <option value="interview_scheduled" ${app.status === 'interview_scheduled' ? 'selected' : ''}>Interview Ready</option>
+                  <option value="accepted" ${app.status === 'accepted' ? 'selected' : ''}>Accepted</option>
+                  <option value="rejected" ${app.status === 'rejected' ? 'selected' : ''}>Rejected</option>
+                </select>
+              </td>
+              <td>
+                ${app.github ? `<a href="${app.github}" target="_blank" class="btn btn-outline btn-sm" style="padding:4px 8px; font-size:0.75rem;">GitHub</a>` : ''}
+              </td>
+            </tr>
+          `).join('');
+        }
+      } catch (err) {
+        tbody.innerHTML = `<tr><td colspan="7" style="color:#ef4444; text-align:center;">Failed to load applications.</td></tr>`;
+      }
+    }
+
+    async function updateAppStatus(id, newStatus) {
+      try {
+        const res = await fetch(`${API_BASE}/applications/${id}/status`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status: newStatus })
+        });
+        const data = await res.json();
+        if (data.success) {
+          showToast(`Status for ${id} updated to ${newStatus}!`, 'success');
+          loadMetrics();
+        } else {
+          showToast(data.error || 'Update failed', 'error');
+        }
+      } catch (err) {
+        showToast('Network error', 'error');
+      }
+    }
+
+    async function loadNotesTable() {
+      const tbody = document.getElementById('notesTbody');
+      try {
+        const res = await fetch(`${API_BASE}/notes`);
+        const data = await res.json();
+        if (data.success && data.notes) {
+          tbody.innerHTML = data.notes.map(n => `
+            <tr>
+              <td>
+                <strong>${n.title}</strong>
+                <div style="font-size:0.8rem; color:#64748b;">${n.subject}</div>
+              </td>
+              <td>${n.branch} (Sem ${n.semester})</td>
+              <td><span class="badge badge-blue">${n.type}</span></td>
+              <td>${n.author}</td>
+              <td><strong>${n.downloads || 0}</strong></td>
+            </tr>
+          `).join('');
+        }
+      } catch (err) {
+        tbody.innerHTML = `<tr><td colspan="5" style="color:#ef4444; text-align:center;">Failed to load notes.</td></tr>`;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadMetrics();
+      loadApplications();
+      loadNotesTable();
+      setInterval(loadMetrics, 10000); // 10s auto refresh
+    });
+  </script>
+</body>
+</html>

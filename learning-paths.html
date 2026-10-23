@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Paths | UNIMATE</title>
+  <meta name="description" content="Explore guided learning roadmaps in Web Development, AI/ML, Design, Cloud, Data, and App Development.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/images/unimate_emblem.png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+</head>
+<body>
+
+  <!-- Site Navigation -->
+  <header class="site-header" id="siteHeader">
+    <div class="container">
+      <nav class="navbar" aria-label="Main Navigation">
+        <a href="index.html" class="brand" aria-label="UNIMATE Home">
+          <div class="brand-badge">
+            <img src="assets/images/unimate_emblem.png" alt="UNIMATE Emblem" class="brand-icon">
+          </div>
+          <div class="brand-text">
+            <span class="brand-title">UNIMATE</span>
+            <span class="brand-subtitle">EMPOWERING STUDENT JOURNEYS</span>
+          </div>
+        </a>
+
+        <ul class="nav-menu" id="navMenu">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item has-dropdown">
+            <a href="learning-paths.html" class="nav-link active">
+              Explore
+              <svg class="dropdown-icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M2.5 4.5L6 8L9.5 4.5"/>
+              </svg>
+            </a>
+            <div class="dropdown-menu">
+              <a href="learning-paths.html" class="dropdown-item">Learning Paths</a>
+              <a href="academic-support.html" class="dropdown-item">Academic Support</a>
+              <a href="projects.html" class="dropdown-item">Projects & Briefs</a>
+              <a href="internships.html" class="dropdown-item">Internships & Opportunities</a>
+              <a href="training-mentorship.html" class="dropdown-item">Training & Mentorship</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a href="learning-paths.html" class="nav-link active">Learning Paths</a>
+          </li>
+          <li class="nav-item">
+            <a href="internships.html" class="nav-link">Opportunities</a>
+          </li>
+          <li class="nav-item">
+            <a href="community.html" class="nav-link">Community</a>
+          </li>
+          <li class="nav-item">
+            <a href="contact.html" class="nav-link">About</a>
+          </li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="contact.html" class="btn btn-primary">
+            Get Started
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 12L12 4M12 4H6M12 4V10"/>
+            </svg>
+          </a>
+        </div>
+
+        <button class="mobile-toggle" aria-label="Toggle navigation">
+          &#9776;
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-grid">
+        <div>
+          <span class="overline overline-dark">EXPLORE / LEARNING PATHS</span>
+          <h1 class="page-hero-title">A roadmap for<br>your ambition.</h1>
+          <p class="page-hero-desc">
+            Start with what you know. Build toward what you want to do. Curated resources, practical exercises and projects make the next step clearer.
+          </p>
+        </div>
+        <div class="page-hero-aside">
+          <h4>Learn with direction. Build with intention.</h4>
+          <p>Choose a domain below, then explore its step-by-step roadmap tailored for modern student careers.</p>
+          <a href="#featuredRoadmap" class="btn btn-secondary-dark btn-sm">Jump to Roadmap &darr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Domains Catalog -->
+  <section style="padding: 80px 0; background: var(--bg-white);">
+    <div class="container">
+      <span class="overline">DOMAINS & SPECIALIZATIONS</span>
+      <h2 class="h2" style="margin-bottom: 24px;">Choose your path.</h2>
+
+      <!-- Filter Tabs -->
+      <div class="filter-tabs" data-filter-group data-filter-target=".domain-card">
+        <button class="filter-btn active" data-filter="all">All Domains</button>
+        <button class="filter-btn" data-filter="web">Web Development</button>
+        <button class="filter-btn" data-filter="ai">AI & Machine Learning</button>
+        <button class="filter-btn" data-filter="design">Design & Creative</button>
+        <button class="filter-btn" data-filter="data">Data Analytics</button>
+        <button class="filter-btn" data-filter="cloud">Cloud & DevOps</button>
+        <button class="filter-btn" data-filter="app">App Development</button>
+      </div>
+
+      <div class="paths-grid" style="grid-template-columns: repeat(3, 1fr);">
+        <!-- Web Dev -->
+        <article class="path-card domain-card" data-category="web" id="web">
+          <div class="path-card-media">
+            <img src="assets/images/unimate_home_2.jpeg" alt="Web Development" loading="lazy">
+          </div>
+          <div class="path-card-body">
+            <span class="badge badge-blue path-card-badge">Web Development</span>
+            <h3 class="path-card-title">Frontend to Full Stack</h3>
+            <p class="path-card-techs">HTML/CSS &rarr; JavaScript &rarr; React &rarr; APIs &rarr; Full Stack</p>
+            <a href="#featuredRoadmap" class="path-card-link">
+              View roadmap
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- AI & ML -->
+        <article class="path-card domain-card" data-category="ai" id="aiml">
+          <div class="path-card-media">
+            <img src="assets/images/unimate_home_3.jpeg" alt="AI & ML" loading="lazy">
+          </div>
+          <div class="path-card-body">
+            <span class="badge badge-teal path-card-badge">Artificial Intelligence</span>
+            <h3 class="path-card-title">AI & Machine Learning</h3>
+            <p class="path-card-techs">Python &rarr; Data &rarr; ML &rarr; Deep Learning &rarr; Deployment</p>
+            <a href="#aimlSection" class="path-card-link">
+              View roadmap
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Design -->
+        <article class="path-card domain-card" data-category="design" id="design">
+          <div class="path-card-media">
+            <img src="assets/images/unimate_home_4.jpeg" alt="Design & Creative" loading="lazy">
+          </div>
+          <div class="path-card-body">
+            <span class="badge badge-amber path-card-badge">UI/UX & Creative</span>
+            <h3 class="path-card-title">Design & Creative</h3>
+            <p class="path-card-techs">Visual foundations &rarr; UI/UX &rarr; Prototypes &rarr; Design Systems</p>
+            <a href="contact.html?interest=design" class="path-card-link">
+              View roadmap
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Data Analytics -->
+        <article class="path-card domain-card" data-category="data" id="data">
+          <div class="path-card-body">
+            <span class="badge badge-blue path-card-badge">Data Analytics</span>
+            <h3 class="path-card-title">Data Analytics</h3>
+            <p class="path-card-techs">Spreadsheets &rarr; SQL &rarr; Python &rarr; Dashboards &rarr; Insights</p>
+            <a href="contact.html?interest=data" class="path-card-link">
+              View roadmap
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Cloud & DevOps -->
+        <article class="path-card domain-card" data-category="cloud" id="cloud">
+          <div class="path-card-body">
+            <span class="badge badge-teal path-card-badge">Cloud & DevOps</span>
+            <h3 class="path-card-title">Cloud & Infrastructure</h3>
+            <p class="path-card-techs">Linux &rarr; Git &rarr; Containers &rarr; CI/CD &rarr; Cloud Deployment</p>
+            <a href="contact.html?interest=cloud" class="path-card-link">
+              View roadmap
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- App Development -->
+        <article class="path-card domain-card" data-category="app" id="app">
+          <div class="path-card-body">
+            <span class="badge badge-amber path-card-badge">Mobile Apps</span>
+            <h3 class="path-card-title">App Development</h3>
+            <p class="path-card-techs">Programming &rarr; Mobile UI &rarr; APIs &rarr; Store Deployment</p>
+            <a href="contact.html?interest=app" class="path-card-link">
+              View roadmap
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg>
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Detailed Roadmap (Web Development) -->
+  <section id="featuredRoadmap" style="padding: 100px 0; background: var(--bg-soft-blue); border-top: 1px solid var(--border-light);">
+    <div class="container">
+      <div class="section-head-split">
+        <div class="left-col">
+          <span class="overline">FEATURED ROADMAP • WEB DEVELOPMENT</span>
+          <h2 class="h2">From your first webpage<br>to a full-stack application.</h2>
+          <p class="subtext" style="margin-top: 16px;">
+            Understand the browser, build responsive interfaces, connect real data and learn to deploy. Each stage ends in something you can make.
+          </p>
+          <a href="contact.html?interest=web" class="btn btn-primary" style="margin-top: 24px;">
+            Enquire about this path
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg>
+          </a>
+        </div>
+        <div class="right-col" style="background:var(--bg-white); padding:28px; border-radius:18px; border:1px solid var(--border-light);">
+          <h4 style="font-size:1.1rem; margin-bottom:12px; color:var(--text-navy);">Overview & Prerequisites</h4>
+          <p style="font-size:0.9rem; margin-bottom:12px;"><strong>Prerequisites:</strong> A laptop, basic computer familiarity and curiosity. No coding experience required.</p>
+          <p style="font-size:0.9rem; margin-bottom:12px;"><strong>Suggested pace:</strong> 12–16 weeks • illustrative planning guidance</p>
+          <p style="font-size:0.9rem;"><strong>Outcomes:</strong> A responsive site, a data-powered app and a documented portfolio project.</p>
+        </div>
+      </div>
+
+      <!-- 4 Stages Grid -->
+      <div class="roadmap-steps-grid" style="margin-top: 48px;">
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <h3 class="step-title">HTML & CSS</h3>
+          <p class="step-desc" style="margin-bottom: 16px;">Semantic structure, layouts, responsive design.</p>
+          <div style="background:var(--bg-soft-blue); padding:10px 14px; border-radius:8px; font-size:0.85rem; font-weight:700; color:var(--primary-blue);">
+            &#9656; Build a personal homepage
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <h3 class="step-title">JavaScript</h3>
+          <p class="step-desc" style="margin-bottom: 16px;">Logic, DOM manipulation, events and async fetch calls.</p>
+          <div style="background:var(--bg-soft-blue); padding:10px 14px; border-radius:8px; font-size:0.85rem; font-weight:700; color:var(--primary-blue);">
+            &#9656; Make an interactive quiz app
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <h3 class="step-title">Frontend & APIs</h3>
+          <p class="step-desc" style="margin-bottom: 16px;">React, state hooks, accessibility and real REST APIs.</p>
+          <div style="background:var(--bg-soft-blue); padding:10px 14px; border-radius:8px; font-size:0.85rem; font-weight:700; color:var(--primary-blue);">
+            &#9656; Build a campus resource finder
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">04</div>
+          <h3 class="step-title">Backend & Deploy</h3>
+          <p class="step-desc" style="margin-bottom: 16px;">Node.js, PostgreSQL/MongoDB, cloud deployment & CI/CD.</p>
+          <div style="background:var(--bg-soft-blue); padding:10px 14px; border-radius:8px; font-size:0.85rem; font-weight:700; color:var(--primary-blue);">
+            &#9656; Ship a full-stack project
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resources That Work Together -->
+  <section style="padding: 100px 0; background: var(--bg-white);">
+    <div class="container">
+      <span class="overline">RESOURCES THAT WORK TOGETHER</span>
+      <h2 class="h2" style="margin-bottom: 50px;">Understand it. Try it. Make it yours.</h2>
+
+      <div class="paths-grid">
+        <div class="support-feature-card" style="padding: 36px 30px;">
+          <h3 class="support-feature-title" style="margin-bottom: 12px;">Read & watch</h3>
+          <p class="support-feature-desc">
+            Curated notes, tutorials, videos and official documentation, organised by roadmap stage.
+          </p>
+        </div>
+        <div class="support-feature-card" style="padding: 36px 30px;">
+          <h3 class="support-feature-title" style="margin-bottom: 12px;">Practise with purpose</h3>
+          <p class="support-feature-desc">
+            Exercises, debugging challenges and mini assignments to check your understanding.
+          </p>
+        </div>
+        <div class="support-feature-card" style="padding: 36px 30px;">
+          <h3 class="support-feature-title" style="margin-bottom: 12px;">Build the next thing</h3>
+          <p class="support-feature-desc">
+            Link each skill to a practical project. Start with the campus resource finder brief.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI / ML Route Highlight -->
+  <section id="aimlSection" style="padding: 80px 0; background: var(--bg-light); border-top: 1px solid var(--border-light);">
+    <div class="container">
+      <div class="section-head-split">
+        <div class="left-col">
+          <span class="overline">ANOTHER ROUTE TO EXPLORE</span>
+          <h2 class="h2">Python today.<br>Machine learning next.</h2>
+          <p class="subtext" style="margin-top: 16px;">
+            Begin with programming foundations, then learn to prepare data and evaluate a model responsibly.
+          </p>
+        </div>
+        <div class="right-col" style="background:var(--bg-white); padding:32px; border-radius:18px; border:1px solid var(--border-light);">
+          <div style="font-weight:700; color:var(--text-navy); margin-bottom:12px;">Structured Flow:</div>
+          <p style="font-size:0.95rem; line-height:1.7; color:var(--text-muted);">
+            Python &rarr; NumPy & Pandas &rarr; Data Visualisation &rarr; ML Fundamentals &rarr; Model Evaluation &rarr; Real Project
+          </p>
+          <a href="contact.html?interest=aiml" class="btn btn-outline btn-sm" style="margin-top:16px;">Enquire for AI/ML Mentorship &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blue Callout -->
+  <section class="section-cta-blue">
+    <div class="container">
+      <div class="cta-blue-inner">
+        <span class="cta-blue-overline">READY TO START?</span>
+        <h2 class="cta-blue-title">Choose your roadmap and begin building.</h2>
+        <p class="cta-blue-desc">Join our community to connect with mentors and study circles for your branch.</p>
+        <div class="cta-blue-buttons">
+          <a href="community.html" class="btn btn-white">Join Community</a>
+          <a href="projects.html" class="btn btn-white-outline">Explore Projects</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand" style="margin-bottom: 18px;">
+            <div class="brand-badge">
+              <img src="assets/images/unimate_emblem.png" alt="UNIMATE Emblem" class="brand-icon">
+            </div>
+            <div class="brand-text">
+              <span class="brand-title">UNIMATE</span>
+              <span class="brand-subtitle">EMPOWERING STUDENT JOURNEYS</span>
+            </div>
+          </a>
+          <p class="footer-brand-desc">
+            Built for students, for the journey ahead. Academic support, practical skills and a community to grow with.
+          </p>
+          <div class="footer-pillars">LEARN • BUILD • GROW • BELONG</div>
+        </div>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4 class="footer-nav-title">Explore</h4>
+          <ul class="footer-links">
+            <li><a href="learning-paths.html" class="footer-link">Learning Paths</a></li>
+            <li><a href="academic-support.html" class="footer-link">Academic Support</a></li>
+            <li><a href="projects.html" class="footer-link">Projects</a></li>
+            <li><a href="internships.html" class="footer-link">Internships & Opportunities</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4 class="footer-nav-title">Connect</h4>
+          <ul class="footer-links">
+            <li><a href="community.html" class="footer-link">Community</a></li>
+            <li><a href="training-mentorship.html" class="footer-link">Training & Mentorship</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+            <li><a href="contact.html" class="footer-link">About UNIMATE</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 UNIMATE. Empowering student journeys.</div>
+        <div class="footer-legal-links">
+          <a href="contact.html" class="footer-legal-link">Privacy</a>
+          <span>•</span>
+          <a href="contact.html" class="footer-legal-link">Terms</a>
+          <span>•</span>
+          <a href="contact.html" class="footer-legal-link">Contact</a>
+          <span>•</span>
+          <a href="https://instagram.com" target="_blank" rel="noopener" class="footer-legal-link">@unimate</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

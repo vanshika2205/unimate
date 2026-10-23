@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects & Briefs | UNIMATE</title>
+  <meta name="description" content="Turn concepts into portfolio-worthy projects. Discover project briefs, find teammates, and showcase your work.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/images/unimate_emblem.png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+</head>
+<body>
+
+  <!-- Site Navigation -->
+  <header class="site-header" id="siteHeader">
+    <div class="container">
+      <nav class="navbar" aria-label="Main Navigation">
+        <a href="index.html" class="brand" aria-label="UNIMATE Home">
+          <div class="brand-badge">
+            <img src="assets/images/unimate_emblem.png" alt="UNIMATE Emblem" class="brand-icon">
+          </div>
+          <div class="brand-text">
+            <span class="brand-title">UNIMATE</span>
+            <span class="brand-subtitle">EMPOWERING STUDENT JOURNEYS</span>
+          </div>
+        </a>
+
+        <ul class="nav-menu" id="navMenu">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item has-dropdown">
+            <a href="projects.html" class="nav-link active">
+              Explore
+              <svg class="dropdown-icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 4.5L6 8L9.5 4.5"/></svg>
+            </a>
+            <div class="dropdown-menu">
+              <a href="learning-paths.html" class="dropdown-item">Learning Paths</a>
+              <a href="academic-support.html" class="dropdown-item">Academic Support</a>
+              <a href="projects.html" class="dropdown-item">Projects & Briefs</a>
+              <a href="internships.html" class="dropdown-item">Internships & Opportunities</a>
+              <a href="training-mentorship.html" class="dropdown-item">Training & Mentorship</a>
+            </div>
+          </li>
+          <li class="nav-item"><a href="learning-paths.html" class="nav-link">Learning Paths</a></li>
+          <li class="nav-item"><a href="internships.html" class="nav-link">Opportunities</a></li>
+          <li class="nav-item"><a href="community.html" class="nav-link">Community</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">About</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="contact.html" class="btn btn-primary">
+            Get Started
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg>
+          </a>
+        </div>
+
+        <button class="mobile-toggle" aria-label="Toggle navigation">&#9776;</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-grid">
+        <div>
+          <span class="overline overline-dark">PROJECTS & BRIEFS</span>
+          <h1 class="page-hero-title">Make your skills<br>visible.</h1>
+          <p class="page-hero-desc">
+            Find an idea worth exploring, build with intention and tell the story behind your work. Go solo or find a complementary team.
+          </p>
+        </div>
+        <div class="page-hero-aside">
+          <h4>A brief is just the beginning.</h4>
+          <p>Explore hands-on challenges designed to help you construct real portfolio work.</p>
+          <a href="#featuredBrief" class="btn btn-secondary-dark btn-sm">Explore Brief &darr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Project Catalog -->
+  <section style="padding: 80px 0; background: var(--bg-white);">
+    <div class="container">
+      <span class="overline">IDEAS TO INSPIRE, NOT CLAIMED RESULTS</span>
+      <h2 class="h2" style="margin-bottom: 24px;">Browse curated briefs.</h2>
+
+      <div class="filter-tabs" data-filter-group data-filter-target=".brief-card">
+        <button class="filter-btn active" data-filter="all">All Briefs</button>
+        <button class="filter-btn" data-filter="web">Web & Full Stack</button>
+        <button class="filter-btn" data-filter="ai">AI / Data</button>
+        <button class="filter-btn" data-filter="design">Design & UI</button>
+      </div>
+
+      <div class="paths-grid">
+        <!-- Brief 1 -->
+        <article class="path-card brief-card" data-category="web">
+          <div class="path-card-body">
+            <span class="badge badge-blue path-card-badge">Web • Beginner/Intermediate</span>
+            <h3 class="path-card-title">Campus resource finder</h3>
+            <p class="path-card-techs">Build searchable subject notes with accessible filters, clean layout and responsive search UX.</p>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:20px;"><strong>Stack:</strong> React • Search UX • APIs</p>
+            <a href="#featuredBrief" class="path-card-link">Explore brief &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Brief 2 -->
+        <article class="path-card brief-card" data-category="web">
+          <div class="path-card-body">
+            <span class="badge badge-blue path-card-badge">Web • Beginner</span>
+            <h3 class="path-card-title">Study planner</h3>
+            <p class="path-card-techs">Plan weekly goals and reflect on study habits. Simple state tracking and persistent storage.</p>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:20px;"><strong>Stack:</strong> JavaScript • LocalStorage • CSS Grid</p>
+            <a href="#featuredBrief" class="path-card-link">Explore brief &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Brief 3 -->
+        <article class="path-card brief-card" data-category="ai">
+          <div class="path-card-body">
+            <span class="badge badge-teal path-card-badge">Machine Learning</span>
+            <h3 class="path-card-title">Waste sorting explorer</h3>
+            <p class="path-card-techs">Explore image classification and explain model decisions with confidence scores.</p>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:20px;"><strong>Stack:</strong> Python • PyTorch/TensorFlow • Streamlit</p>
+            <a href="#teammateSection" class="path-card-link">Explore brief &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Brief 4 -->
+        <article class="path-card brief-card" data-category="design">
+          <div class="path-card-body">
+            <span class="badge badge-amber path-card-badge">Design & UI</span>
+            <h3 class="path-card-title">Student club identity</h3>
+            <p class="path-card-techs">Create a visual design system, typography guide, social kit and an accessible event landing page.</p>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:20px;"><strong>Stack:</strong> Figma • Design Tokens • CSS</p>
+            <a href="#teammateSection" class="path-card-link">Explore brief &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Brief 5 -->
+        <article class="path-card brief-card" data-category="ai">
+          <div class="path-card-body">
+            <span class="badge badge-teal path-card-badge">Data Analytics</span>
+            <h3 class="path-card-title">Learning progress dashboard</h3>
+            <p class="path-card-techs">Visualise a sample learning dataset with clear interactive charts, filters and takeaways.</p>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:20px;"><strong>Stack:</strong> SQL • Data Cleaning • Charts</p>
+            <a href="#teammateSection" class="path-card-link">Explore brief &rarr;</a>
+          </div>
+        </article>
+
+        <!-- Brief 6 -->
+        <article class="path-card brief-card" data-category="web">
+          <div class="path-card-body">
+            <span class="badge badge-blue path-card-badge">DevOps & Career</span>
+            <h3 class="path-card-title">Deploy a portfolio</h3>
+            <p class="path-card-techs">Publish a static site and document a clear case study with automated deployment.</p>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:20px;"><strong>Stack:</strong> Git • CI/CD • Cloudflare / Vercel</p>
+            <a href="#teammateSection" class="path-card-link">Explore brief &rarr;</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed Featured Brief -->
+  <section id="featuredBrief" style="padding: 100px 0; background: var(--bg-light); border-top: 1px solid var(--border-light);">
+    <div class="container">
+      <div class="academic-grid">
+        <div>
+          <span class="overline">ILLUSTRATIVE BRIEF / WEB DEVELOPMENT</span>
+          <h2 class="h2">Help students find<br>the right resource.</h2>
+          <p class="subtext" style="margin: 20px 0;">
+            Design and build a campus resource finder that makes useful notes easier to discover by subject, branch and semester.
+          </p>
+          <div style="font-size:0.95rem; margin-bottom:12px;"><strong>Level:</strong> Beginner to intermediate</div>
+          <div style="font-size:0.95rem; margin-bottom:12px;"><strong>Skills:</strong> HTML/CSS, JavaScript or React, search UX, APIs</div>
+          <div style="font-size:0.95rem; margin-bottom:24px;"><strong>Suggested team:</strong> Developer + Designer • planning guidance only</div>
+          <a href="#teammateSection" class="btn btn-primary">
+            Express teammate interest
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg>
+          </a>
+        </div>
+
+        <div class="form-card" style="padding: 36px;">
+          <h3 class="h3" style="margin-bottom: 20px;">What you'll build:</h3>
+          <ul class="checklist" style="margin: 0 0 24px;">
+            <li class="checklist-item"><span class="checklist-icon">&#10003;</span> Search and filters with clear empty states</li>
+            <li class="checklist-item"><span class="checklist-icon">&#10003;</span> Accessible resource cards and detail view</li>
+            <li class="checklist-item"><span class="checklist-icon">&#10003;</span> A sample dataset with honest availability labels</li>
+            <li class="checklist-item"><span class="checklist-icon">&#10003;</span> README, screenshots and a short reflection</li>
+          </ul>
+          <div style="background:var(--bg-soft-blue); padding:16px; border-radius:12px; font-size:0.88rem; color:var(--text-navy);">
+            <strong>Stretch goal:</strong> Add a missing-resource request flow with friendly modal feedback.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Teammate Match Form & Hackathons -->
+  <section id="teammateSection" style="padding: 100px 0; background: var(--bg-white);">
+    <div class="container">
+      <div class="academic-grid">
+        <div class="form-card">
+          <span class="overline">BUILD TOGETHER</span>
+          <h3 class="h3" style="margin-bottom: 12px;">Find a complementary teammate.</h3>
+          <p class="subtext" style="font-size:0.92rem; margin-bottom: 24px;">
+            Share your interest. Team matches depend on other students and current availability.
+          </p>
+
+          <form data-ajax-form data-endpoint="/api/projects/proj-1/join">
+            <div class="form-group">
+              <label class="form-label">Your Name *</label>
+              <input type="text" name="name" class="form-control" placeholder="Your name" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Project of interest *</label>
+              <select name="roleInterested" class="form-control" required>
+                <option value="Campus Resource Finder">Campus resource finder</option>
+                <option value="Real-Time Doubt Portal">Real-Time Doubt Clearance Portal</option>
+                <option value="AI Lecture Summarizer">AI Lecture Notes Summarizer</option>
+                <option value="Student Club Identity">Student club identity</option>
+                <option value="Portfolio Hub">Deploy a portfolio</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Your skill & contribution *</label>
+              <input type="text" name="message" class="form-control" placeholder="e.g. Frontend development, 2 evenings a week" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Email for a reply *</label>
+              <input type="email" name="email" class="form-control" placeholder="you@example.com" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+              Share teammate interest
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg>
+            </button>
+          </form>
+        </div>
+
+        <div>
+          <span class="overline">THINK BIGGER</span>
+          <h2 class="h2">Hackathons & ideathons.</h2>
+          <p class="subtext" style="margin: 20px 0 24px;">
+            Bring a problem, form a team and practise pitching a useful solution. Explore challenge preparation and announcements through the community.
+          </p>
+          <div style="background:var(--bg-light); border:1px solid var(--border-light); padding:24px; border-radius:18px; margin-bottom:28px;">
+            <h4 style="font-size:1rem; margin-bottom:8px; color:var(--text-navy);">Current event availability</h4>
+            <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.5;">
+              Enquire for upcoming challenges, schedules and eligibility. No event dates or prizes are guaranteed here.
+            </p>
+          </div>
+          <a href="community.html" class="btn btn-outline">
+            Explore Community
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand" style="margin-bottom: 18px;">
+            <div class="brand-badge">
+              <img src="assets/images/unimate_emblem.png" alt="UNIMATE Emblem" class="brand-icon">
+            </div>
+            <div class="brand-text">
+              <span class="brand-title">UNIMATE</span>
+              <span class="brand-subtitle">EMPOWERING STUDENT JOURNEYS</span>
+            </div>
+          </a>
+          <p class="footer-brand-desc">
+            Built for students, for the journey ahead. Academic support, practical skills and a community to grow with.
+          </p>
+          <div class="footer-pillars">LEARN • BUILD • GROW • BELONG</div>
+        </div>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4 class="footer-nav-title">Explore</h4>
+          <ul class="footer-links">
+            <li><a href="learning-paths.html" class="footer-link">Learning Paths</a></li>
+            <li><a href="academic-support.html" class="footer-link">Academic Support</a></li>
+            <li><a href="projects.html" class="footer-link">Projects</a></li>
+            <li><a href="internships.html" class="footer-link">Internships & Opportunities</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4 class="footer-nav-title">Connect</h4>
+          <ul class="footer-links">
+            <li><a href="community.html" class="footer-link">Community</a></li>
+            <li><a href="training-mentorship.html" class="footer-link">Training & Mentorship</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+            <li><a href="contact.html" class="footer-link">About UNIMATE</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 UNIMATE. Empowering student journeys.</div>
+        <div class="footer-legal-links">
+          <a href="contact.html" class="footer-legal-link">Privacy</a>
+          <span>•</span>
+          <a href="contact.html" class="footer-legal-link">Terms</a>
+          <span>•</span>
+          <a href="contact.html" class="footer-legal-link">Contact</a>
+          <span>•</span>
+          <a href="https://instagram.com" target="_blank" rel="noopener" class="footer-legal-link">@unimate</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

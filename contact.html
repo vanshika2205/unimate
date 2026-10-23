@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact & About | UNIMATE</title>
+  <meta name="description" content="Reach out to the UNIMATE team, join the official WhatsApp community, and find answers to common questions.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/images/unimate_emblem.png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+</head>
+<body>
+
+  <!-- Site Navigation -->
+  <header class="site-header" id="siteHeader">
+    <div class="container">
+      <nav class="navbar" aria-label="Main Navigation">
+        <a href="index.html" class="brand" aria-label="UNIMATE Home">
+          <div class="brand-badge">
+            <img src="assets/images/unimate_emblem.png" alt="UNIMATE Emblem" class="brand-icon">
+          </div>
+          <div class="brand-text">
+            <span class="brand-title">UNIMATE</span>
+            <span class="brand-subtitle">EMPOWERING STUDENT JOURNEYS</span>
+          </div>
+        </a>
+
+        <ul class="nav-menu" id="navMenu">
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item has-dropdown">
+            <a href="learning-paths.html" class="nav-link">
+              Explore
+              <svg class="dropdown-icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 4.5L6 8L9.5 4.5"/></svg>
+            </a>
+            <div class="dropdown-menu">
+              <a href="learning-paths.html" class="dropdown-item">Learning Paths</a>
+              <a href="academic-support.html" class="dropdown-item">Academic Support</a>
+              <a href="projects.html" class="dropdown-item">Projects & Briefs</a>
+              <a href="internships.html" class="dropdown-item">Internships & Opportunities</a>
+              <a href="training-mentorship.html" class="dropdown-item">Training & Mentorship</a>
+            </div>
+          </li>
+          <li class="nav-item"><a href="learning-paths.html" class="nav-link">Learning Paths</a></li>
+          <li class="nav-item"><a href="internships.html" class="nav-link">Opportunities</a></li>
+          <li class="nav-item"><a href="community.html" class="nav-link">Community</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link active">About</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="contact.html" class="btn btn-primary">
+            Get Started
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg>
+          </a>
+        </div>
+
+        <button class="mobile-toggle" aria-label="Toggle navigation">&#9776;</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-grid">
+        <div>
+          <span class="overline overline-dark">START WITH A QUESTION</span>
+          <h1 class="page-hero-title">Let's find your<br>next step.</h1>
+          <p class="page-hero-desc">
+            Ask about a course, request a resource, discuss a project or explore mentorship. Tell us a little about your goal so we can point you in the right direction.
+          </p>
+        </div>
+        <div class="page-hero-aside">
+          <h4>We'll take it from there</h4>
+          <p>Enquiries are reviewed by students and leads who understand your college journey.</p>
+          <a href="#contactForm" class="btn btn-secondary-dark btn-sm">Jump to Form &darr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Grid -->
+  <section id="contactForm" style="padding: 100px 0; background: var(--bg-white);">
+    <div class="container">
+      <div class="academic-grid">
+        <!-- Enquiry Form -->
+        <div class="form-card">
+          <span class="overline">DIRECT ENQUIRY</span>
+          <h2 class="h2" style="font-size:2rem; margin-bottom:10px;">What can we help you with?</h2>
+          <p class="subtext" style="font-size:0.9rem; margin-bottom:28px;">
+            Fields marked * are required. Share only the details needed for your enquiry.
+          </p>
+
+          <form data-ajax-form data-endpoint="/api/contact">
+            <div class="form-group">
+              <label class="form-label">Full name *</label>
+              <input type="text" name="name" class="form-control" placeholder="Enter your name" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Email for a reply *</label>
+              <input type="email" name="email" class="form-control" placeholder="you@example.com" required>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Area of interest *</label>
+                <select name="category" class="form-control" required>
+                  <option value="Learning Paths">Learning Paths & Roadmaps</option>
+                  <option value="Academic Support">Academic Support & Subject Notes</option>
+                  <option value="Mentorship">Training & 1-on-1 Mentorship</option>
+                  <option value="Projects">Projects & Teammate Search</option>
+                  <option value="Internship">Internships & Opportunities</option>
+                  <option value="General">General / Other question</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">College / institution (optional)</label>
+                <input type="text" name="college" class="form-control" placeholder="Your college or institution">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Subject *</label>
+              <input type="text" name="subject" class="form-control" placeholder="e.g. Help choosing a learning roadmap" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Your message *</label>
+              <textarea name="message" class="form-control" rows="4" placeholder="Tell us your goal, current level and what you need assistance with..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+              Send enquiry
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg>
+            </button>
+          </form>
+        </div>
+
+        <!-- Right Side Information -->
+        <div style="display:flex; flex-direction:column; gap:24px;">
+          <!-- WhatsApp Card -->
+          <div style="background:var(--bg-soft-blue); border:1px solid var(--border-light); border-radius:var(--radius-xl); padding:32px;">
+            <span class="badge badge-blue" style="margin-bottom:12px;">OFFICIAL INVITATION</span>
+            <h3 class="h3" style="margin-bottom:10px;">Join the official WhatsApp community.</h3>
+            <p class="subtext" style="font-size:0.92rem; margin-bottom:20px;">
+              Ask about resources, opportunities and community groups directly with peers.
+            </p>
+            <a href="https://chat.whatsapp.com/DTkcZ6FHhAQ7jGVo5vSEOQ" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+              Open WhatsApp invitation
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg>
+            </a>
+          </div>
+
+          <!-- Social Handle Card -->
+          <div style="background:var(--bg-white); border:1px solid var(--border-light); border-radius:var(--radius-xl); padding:32px;">
+            <span class="overline" style="margin-bottom:6px;">OFFICIAL SOCIAL HANDLE</span>
+            <h3 class="h3" style="color:var(--primary-blue); margin-bottom:8px;">@unimate</h3>
+            <p class="subtext" style="font-size:0.9rem;">
+              Follow announcements, workshop schedules, and student showcase features.
+            </p>
+          </div>
+
+          <!-- Transparency Notice -->
+          <div style="background:var(--bg-light); border:1px solid var(--border-light); border-radius:var(--radius-xl); padding:32px;">
+            <h4 style="font-size:1.05rem; font-weight:700; margin-bottom:8px; color:var(--text-navy);">Before you commit</h4>
+            <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.6;">
+              Enquire for current availability. Confirm scope, fees, duration, schedules and eligibility directly. Submission of an enquiry is not a booking or enrolment confirmation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive FAQ Section -->
+  <section style="padding: 100px 0; background: var(--bg-light); border-top: 1px solid var(--border-light);">
+    <div class="container container-narrow">
+      <span class="overline">A FEW HELPFUL ANSWERS</span>
+      <h2 class="h2" style="margin-bottom: 40px;">Before you reach out.</h2>
+
+      <div class="accordion">
+        <div class="accordion-item open">
+          <div class="accordion-header">
+            <span>How much does support or training cost?</span>
+            <svg class="accordion-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6L8 10L12 6"/></svg>
+          </div>
+          <div class="accordion-body">
+            Community groups, project briefs, and core outlines are open to all students. For 1-on-1 personalized mentorship or intensive workshops, scope and any applicable nominal fees are shared upfront before you decide. No charges are incurred by submitting an enquiry.
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <span>Can you complete my assignment for me?</span>
+            <svg class="accordion-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6L8 10L12 6"/></svg>
+          </div>
+          <div class="accordion-body">
+            <strong>No.</strong> Academic support focuses on concept explanations, record formatting guidance, viva question practice, and presentation framing so you can do your own work with integrity. We never write assessed papers or take tests for students.
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <span>Are internships paid?</span>
+            <svg class="accordion-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6L8 10L12 6"/></svg>
+          </div>
+          <div class="accordion-body">
+            We are completely transparent: core student contributor internships are typically 2-month unpaid remote learning stints focused on skill building, offer letters, and verifiable completion certificates. Any role offering a stipend will clearly state the terms upfront.
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <span>Who will my mentor be?</span>
+            <svg class="accordion-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6L8 10L12 6"/></svg>
+          </div>
+          <div class="accordion-body">
+            Mentors are experienced seniors, recent graduates, and practicing engineers/designers who have excelled in the exact skills you are trying to learn. Details and profiles are shared once we understand your goals.
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <span>Can I request a missing subject resource?</span>
+            <svg class="accordion-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6L8 10L12 6"/></svg>
+          </div>
+          <div class="accordion-body">
+            Yes! If you cannot find notes for your specific branch, elective, or semester, use the "Request a resource" form on our Academic Support page or post in our WhatsApp community branch circle.
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <span>Will an enquiry reserve a place?</span>
+            <svg class="accordion-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg>
+          </div>
+          <div class="accordion-body">
+            No. Enquiries and expressions of interest are initial conversations. Formal registration, mentorship matching, or cohort selection is finalized directly with you afterwards.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand" style="margin-bottom: 18px;">
+            <div class="brand-badge">
+              <img src="assets/images/unimate_emblem.png" alt="UNIMATE Emblem" class="brand-icon">
+            </div>
+            <div class="brand-text">
+              <span class="brand-title">UNIMATE</span>
+              <span class="brand-subtitle">EMPOWERING STUDENT JOURNEYS</span>
+            </div>
+          </a>
+          <p class="footer-brand-desc">
+            Built for students, for the journey ahead. Academic support, practical skills and a community to grow with.
+          </p>
+          <div class="footer-pillars">LEARN • BUILD • GROW • BELONG</div>
+        </div>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4 class="footer-nav-title">Explore</h4>
+          <ul class="footer-links">
+            <li><a href="learning-paths.html" class="footer-link">Learning Paths</a></li>
+            <li><a href="academic-support.html" class="footer-link">Academic Support</a></li>
+            <li><a href="projects.html" class="footer-link">Projects</a></li>
+            <li><a href="internships.html" class="footer-link">Internships & Opportunities</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4 class="footer-nav-title">Connect</h4>
+          <ul class="footer-links">
+            <li><a href="community.html" class="footer-link">Community</a></li>
+            <li><a href="training-mentorship.html" class="footer-link">Training & Mentorship</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+            <li><a href="contact.html" class="footer-link">About UNIMATE</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 UNIMATE. Empowering student journeys.</div>
+        <div class="footer-legal-links">
+          <a href="contact.html" class="footer-legal-link">Privacy</a>
+          <span>•</span>
+          <a href="contact.html" class="footer-legal-link">Terms</a>
+          <span>•</span>
+          <a href="contact.html" class="footer-legal-link">Contact</a>
+          <span>•</span>
+          <a href="https://instagram.com" target="_blank" rel="noopener" class="footer-legal-link">@unimate</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
